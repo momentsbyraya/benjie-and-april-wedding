@@ -72,6 +72,49 @@ const Details = () => {
     return { Icon: null, text: cleanText }
   }
 
+  // Helper function to parse answer text and convert phone numbers to clickable links
+  const parseAnswerWithPhoneNumbers = (answer) => {
+    // Phone number pattern: matches 10-11 digit numbers (Philippine format)
+    const phonePattern = /(\d{10,11})/g
+    
+    const parts = []
+    let lastIndex = 0
+    let match
+    
+    while ((match = phonePattern.exec(answer)) !== null) {
+      // Add text before the phone number
+      if (match.index > lastIndex) {
+        parts.push(answer.substring(lastIndex, match.index))
+      }
+      
+      // Add the phone number as a link
+      const phoneNumber = match[0]
+      // Format phone number for tel: protocol (remove leading 0 and add country code for better compatibility)
+      // Keep original format for display, but use international format for tel: link
+      const telNumber = phoneNumber.startsWith('0') ? `+63${phoneNumber.slice(1)}` : phoneNumber
+      parts.push(
+        <a
+          key={match.index}
+          href={`tel:${telNumber}`}
+          className="faq-phone-link"
+          aria-label={`Call ${phoneNumber}`}
+        >
+          {phoneNumber}
+        </a>
+      )
+      
+      lastIndex = match.index + phoneNumber.length
+    }
+    
+    // Add remaining text after the last phone number
+    if (lastIndex < answer.length) {
+      parts.push(answer.substring(lastIndex))
+    }
+    
+    // If no phone numbers were found, return the original answer
+    return parts.length > 0 ? parts : answer
+  }
+
   // Random background position, rotation, and flip - Base layer (old-book-2)
   const bgStyleBase = useMemo(() => {
     const posX = Math.random() * 100 // 0% to 100%
@@ -402,7 +445,7 @@ const Details = () => {
                         Q: {text}
                       </p>
                       <p className="text-sm sm:text-base font-albert font-thin text-[#f5f5f0] whitespace-pre-line">
-                        A: {item.answer}
+                        A: {parseAnswerWithPhoneNumbers(item.answer)}
                       </p>
                     </div>
                     {index < faqItems.faqData.length - 1 && (

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { dresscode } from '../data'
@@ -13,6 +13,20 @@ const DressCode = () => {
   const dressCodeContentRef = useRef(null)
   const category1Ref = useRef(null)
   const category2Ref = useRef(null)
+  
+  // State for tooltip visibility
+  const [activeTooltip, setActiveTooltip] = useState(null)
+  
+  // Color name mappings
+  const colorNames = {
+    '#000000': 'Black',
+    '#003366': 'Navy Blue',
+    '#d8beb5': 'Dusty Rose',
+    '#ac898d': 'Mauve',
+    '#dab2a9': 'Blush Pink',
+    '#e7dbcb': 'Beige',
+    '#dcbaa1': 'Peach'
+  }
 
   useEffect(() => {
     // Dress Code Title animation
@@ -164,7 +178,7 @@ const DressCode = () => {
           const section = dresscode.sections[0];
           return (
             <div className="relative overflow-visible flex-1">
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-visible">
                 <div 
                   ref={category1Ref}
                   className="transition-opacity duration-500 ease-in-out"
@@ -189,8 +203,23 @@ const DressCode = () => {
                         
                         {/* Color Swatches */}
                         <div className="flex gap-2 justify-end lg-custom:justify-start">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#000000' }}></div>
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#003366' }}></div>
+                          {['#000000', '#003366'].map((color, index) => (
+                            <div
+                              key={index}
+                              className="relative group"
+                              onMouseEnter={() => setActiveTooltip(`sponsors-${index}`)}
+                              onMouseLeave={() => setActiveTooltip(null)}
+                              onClick={() => setActiveTooltip(activeTooltip === `sponsors-${index}` ? null : `sponsors-${index}`)}
+                            >
+                              <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded cursor-pointer" style={{ backgroundColor: color }}></div>
+                              {activeTooltip === `sponsors-${index}` && (
+                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-[#333333] text-white text-xs rounded whitespace-nowrap z-[9999] pointer-events-none color-swatch-tooltip" style={{ position: 'absolute' }}>
+                                  {colorNames[color]}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#333333]"></div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -229,7 +258,7 @@ const DressCode = () => {
           const section = dresscode.sections[1];
               return (
             <div className="relative overflow-visible flex-1">
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-visible">
                 <div 
                   ref={category2Ref}
                   className="text-center transition-opacity duration-500 ease-in-out"
@@ -267,11 +296,23 @@ const DressCode = () => {
                         
                         {/* Color Swatches */}
                         <div className="flex gap-2 justify-start lg-custom:justify-start">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#d8beb5' }}></div>
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#ac898d' }}></div>
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#dab2a9' }}></div>
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#e7dbcb' }}></div>
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded" style={{ backgroundColor: '#dcbaa1' }}></div>
+                          {['#d8beb5', '#ac898d', '#dab2a9', '#e7dbcb', '#dcbaa1'].map((color, index) => (
+                            <div
+                              key={index}
+                              className="relative group"
+                              onMouseEnter={() => setActiveTooltip(`guests-${index}`)}
+                              onMouseLeave={() => setActiveTooltip(null)}
+                              onClick={() => setActiveTooltip(activeTooltip === `guests-${index}` ? null : `guests-${index}`)}
+                            >
+                              <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded cursor-pointer" style={{ backgroundColor: color }}></div>
+                              {activeTooltip === `guests-${index}` && (
+                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-[#333333] text-white text-xs rounded whitespace-nowrap z-[9999] pointer-events-none color-swatch-tooltip" style={{ position: 'absolute' }}>
+                                  {colorNames[color]}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#333333]"></div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>

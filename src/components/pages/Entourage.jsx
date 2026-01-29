@@ -461,11 +461,31 @@ const Entourage = () => {
             <div className="text-center mb-12">
               <h2 ref={headerRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-8">
                 {/* Couple Names */}
-                <div className="font-tebranos text-4xl sm:text-5xl md:text-6xl lg:text-7xl block leading-none uppercase" style={{ lineHeight: '0.8', color: '#006666' }}>
-                  {couple.groom.firstName} AND {couple.bride.firstName}
+                <div className="flex flex-col items-center justify-center">
+                  {/* Groom's Name */}
+                  <div>
+                    <p className="font-tebranos text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-tight" style={{ color: '#006666' }}>
+                      {couple.groom.firstName}
+                    </p>
+                    <p className="font-ballet text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight -mt-4" style={{ color: '#006666' }}>
+                      {couple.groom.lastName}
+                    </p>
+                  </div>
+                  <p className="caudex-bold text-base sm:text-lg md:text-xl lg:text-2xl uppercase leading-tight my-1" style={{ color: '#006666' }}>
+                    AND
+                  </p>
+                  {/* Bride's Name */}
+                  <div>
+                    <p className="font-tebranos text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-tight" style={{ color: '#006666' }}>
+                      {couple.bride.firstName}
+                    </p>
+                    <p className="font-ballet text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight -mt-4" style={{ color: '#006666' }}>
+                      {couple.bride.lastName}
+                    </p>
+                  </div>
                 </div>
                 {/* NUPTIALS */}
-                <div className="caudex-bold text-base sm:text-lg md:text-xl lg:text-2xl block leading-none uppercase mt-1" style={{ lineHeight: '0.8', color: '#006666' }}>
+                <div className="caudex-bold text-base sm:text-lg md:text-xl lg:text-2xl block leading-none uppercase mt-8" style={{ lineHeight: '0.8', color: '#006666' }}>
                   NUPTIALS
                 </div>
               </h2>

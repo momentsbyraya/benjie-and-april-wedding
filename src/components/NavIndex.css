@@ -185,7 +185,7 @@
 
 @keyframes flower2Animation {
   0% {
-    opacity: 0;
+  opacity: 0;
     transform: scale(0) rotate(0deg);
   }
   100% {

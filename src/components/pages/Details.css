@@ -108,6 +108,24 @@
   margin-top: 0;
 }
 
+/* Color Swatch Tooltip */
+.color-swatch-tooltip {
+  animation: fadeIn 0.2s ease-in-out;
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -5px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 /* Gift Registry */
 .gift-registry-title-text {
   line-height: 0.8;
@@ -171,4 +189,21 @@
 /* Back Button */
 .back-button {
   pointer-events: auto;
+}
+
+/* FAQ Phone Link */
+.faq-phone-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.faq-phone-link:hover {
+  text-decoration: none;
+}
+
+.faq-phone-link:active,
+.faq-phone-link:focus {
+  text-decoration: underline;
+  outline: none;
 }

@@ -43,7 +43,7 @@ const NavIndex = ({ onOpenRSVP }) => {
       if (coupleNameRef.current) gsap.set(coupleNameRef.current, { opacity: 0, y: 30 })
       if (envelopeRef.current) gsap.set(envelopeRef.current, { opacity: 0, y: 30 })
       if (flower1Ref.current) gsap.set(flower1Ref.current, { opacity: 0, scale: 0, rotation: 0 })
-      if (flower3Ref.current) gsap.set(flower3Ref.current, { opacity: 0, scale: 0 })
+      if (flower3Ref.current) gsap.set(flower3Ref.current, { opacity: 0, scale: 0, transform: 'translate(-50%, 80%) scale(0)' })
       if (flower4Ref.current) gsap.set(flower4Ref.current, { opacity: 0, scale: 0, rotation: 0 })
       if (ovalContainerRef.current) gsap.set(ovalContainerRef.current, { opacity: 0, y: 30 })
       if (polaroidRef.current) gsap.set(polaroidRef.current, { opacity: 0, y: 30 })
@@ -111,8 +111,8 @@ const NavIndex = ({ onOpenRSVP }) => {
             // Flower 3 - bottom left of polaroid
             if (flower3Ref.current) {
               tl.fromTo(flower3Ref.current,
-                { opacity: 0, scale: 0 },
-                { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
+                { opacity: 0, scale: 0, transform: 'translate(-50%, 80%) scale(0)' },
+                { opacity: 1, scale: 1, transform: 'translate(-50%, 80%) scale(1)', duration: 0.6, ease: "back.out(1.7)" },
                 "-=0.4"
               )
             }
