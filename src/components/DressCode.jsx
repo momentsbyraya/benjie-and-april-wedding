@@ -18,27 +18,34 @@ const DressCode = () => {
   // State for tooltip visibility
   const [activeTooltip, setActiveTooltip] = useState(null)
   
-  // Color swatches for Principal Sponsors (darker/formal colors)
+  // Color swatches for Principal Sponsors (black for Ninongs, sage green for Ninangs)
   const sponsorColors = [
-    themeConfig.text.burntOrange,  // Burnt Orange
-    themeConfig.text.brown          // Brown
+    '#000000',                      // Black (for Ninongs)
+    themeConfig.text.sageGreen      // Sage Green (for Ninangs)
   ]
   
-  // Color swatches for Guests (garden wedding colors)
+  // Color swatches for Guests (from the color palette shown)
   const guestColors = [
-    themeConfig.text.terracotta,    // Terracotta
-    themeConfig.text.burntOrange,   // Burnt Orange
-    themeConfig.text.sageGreen,     // Sage Green
-    themeConfig.text.beige,         // Beige
-    themeConfig.text.gardenGreen    // Garden Green
+    themeConfig.text.burntOrange,   // Deep burnt orange
+    '#E07A5F',                      // Lighter burnt orange/terracotta
+    themeConfig.text.sageGreen,      // Medium sage green
+    '#9CAF88',                      // Lighter sage green/grey-green
+    '#D3D3D3',                      // Light grey with lavender hint
+    '#FFE5D9',                      // Light peach/blush pink
+    '#FFD4C4'                       // Darker peach/blush pink
   ]
   
   // Color name mappings
   const colorNames = {
+    '#000000': 'Black',
     [themeConfig.text.burntOrange]: 'Burnt Orange',
-    [themeConfig.text.brown]: 'Brown',
-    [themeConfig.text.terracotta]: 'Terracotta',
+    '#E07A5F': 'Terracotta',
     [themeConfig.text.sageGreen]: 'Sage Green',
+    '#9CAF88': 'Garden Green',
+    '#D3D3D3': 'Light Grey',
+    '#FFE5D9': 'Blush Pink',
+    '#FFD4C4': 'Peach',
+    [themeConfig.text.brown]: 'Brown',
     [themeConfig.text.beige]: 'Beige',
     [themeConfig.text.ivory]: 'Ivory',
     [themeConfig.text.gardenGreen]: 'Garden Green'
@@ -180,9 +187,7 @@ const DressCode = () => {
           </h3>
           {/* General Dress Code Description */}
           <p className="text-base sm:text-lg font-albert font-thin italic dress-code-description">
-            We would love to see you in your
-            formal attire
-            that complements our garden wedding color palette
+            {dresscode.mainDressCode?.description || "Formal attire with these colors on our special day."}
           </p>
         </div>
       </div>
@@ -311,7 +316,7 @@ const DressCode = () => {
                         )}
                         
                         {/* Color Swatches */}
-                        <div className="flex gap-2 justify-start lg-custom:justify-start">
+                        <div className="flex justify-start lg-custom:justify-start" style={{ gap: '-4px' }}>
                           {guestColors.map((color, index) => (
                             <div
                               key={index}
@@ -319,6 +324,7 @@ const DressCode = () => {
                               onMouseEnter={() => setActiveTooltip(`guests-${index}`)}
                               onMouseLeave={() => setActiveTooltip(null)}
                               onClick={() => setActiveTooltip(activeTooltip === `guests-${index}` ? null : `guests-${index}`)}
+                              style={{ marginLeft: index > 0 ? '-8px' : '0' }}
                             >
                               <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded cursor-pointer" style={{ backgroundColor: color }}></div>
                               {activeTooltip === `guests-${index}` && (

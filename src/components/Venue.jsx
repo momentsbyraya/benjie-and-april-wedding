@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { venues as venuesData } from '../data'
 import SecondaryButton from './SecondaryButton'
 import './pages/Details.css'
@@ -12,11 +12,26 @@ gsap.registerPlugin(ScrollTrigger)
 const Venue = () => {
   const venueTitleRef = useRef(null)
   const venueRef = useRef(null)
+  const carouselRef = useRef(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const ceremony = venuesData.ceremony
   const reception = venuesData.reception
   // Since both ceremony and reception are at the same venue, use ceremony data
   const venue = ceremony
+
+  const venueImages = [
+    { src: '/assets/images/venues/ceremony.JPG', alt: 'Ceremony Venue', label: 'Ceremony' },
+    { src: '/assets/images/venues/reception.JPG', alt: 'Reception Venue', label: 'Reception' }
+  ]
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % venueImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + venueImages.length) % venueImages.length)
+  }
 
   useEffect(() => {
     // Venue Title animation
@@ -108,30 +123,86 @@ const Venue = () => {
             ref={venueRef} 
             className="text-center transition-opacity duration-500 ease-in-out"
           >
-            {/* Venue Image and Details - Stacked on mobile, side by side on 768px+ */}
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-              {/* Venue Image */}
-              <div className="w-full md:w-2/5 flex justify-center">
-                <div className="w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px] aspect-square relative venue-image-container">
-                  <img 
-                    src="/assets/images/venues/ceremony.JPG" 
-                    alt={venue.name} 
-                    className="w-full h-full object-cover rounded-full"
-                  />
+            {/* Venue Image and Details - Stacked on all screen sizes */}
+            <div className="flex flex-col gap-6 md:gap-8 items-center md:items-center">
+              {/* Venue Images - Carousel on mobile, both images on 768px+ */}
+              <div className="w-full flex justify-center items-center gap-2">
+                {/* Carousel Navigation Buttons - Outside on mobile */}
+                <button
+                  onClick={prevImage}
+                  className="md:hidden flex items-center justify-center transition-opacity duration-200 z-10 flex-shrink-0 hover:opacity-70"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-8 h-8 text-[#CC5500]" />
+                </button>
+                
+                {/* Mobile Carousel (< 768px) */}
+                <div className="md:hidden w-full max-w-[220px] sm:max-w-[240px] aspect-square relative venue-image-container overflow-hidden">
+                  <div 
+                    ref={carouselRef}
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                  >
+                    {venueImages.map((image, index) => (
+                      <div key={index} className="min-w-full aspect-square">
+                        <img 
+                          src={image.src} 
+                          alt={image.alt} 
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Carousel Indicators */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {venueImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                          index === currentIndex ? 'bg-[#CC5500] w-6' : 'bg-white/60'
+                        }`}
+                        aria-label={`Go to image ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Next Button - Outside on mobile */}
+                <button
+                  onClick={nextImage}
+                  className="md:hidden flex items-center justify-center transition-opacity duration-200 z-10 flex-shrink-0 hover:opacity-70"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-8 h-8 text-[#CC5500]" />
+                </button>
+
+                {/* Desktop View - Both Images Side by Side (>= 768px) - Same container as original */}
+                <div className="hidden md:flex gap-4 w-full max-w-[320px] lg:max-w-[380px] xl:max-w-[420px] justify-center">
+                  {venueImages.map((image, index) => (
+                    <div key={index} className="w-full aspect-square relative venue-image-container flex-shrink-0" style={{ width: 'calc(50% - 8px)' }}>
+                      <img 
+                        src={image.src} 
+                        alt={image.alt} 
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
               
               {/* Venue Details */}
-              <div className="w-full md:w-3/5 flex flex-col justify-between text-center md:text-left">
+              <div className="w-full flex flex-col justify-between text-center">
                 {/* Venue Name and Location Container */}
                 <div>
                   {/* Venue Name */}
-                  <div className="text-lg sm:text-xl md:text-2xl font-boska text-[#333333] mb-2 text-center md:text-left">
+                  <div className="text-lg sm:text-xl md:text-2xl font-boska text-[#333333] mb-2 text-center">
                     {venue.name}
                   </div>
                   
                   {/* Address */}
-                  <p className="text-sm sm:text-base font-albert font-thin text-[#333333] mb-2 text-center md:text-left">
+                  <p className="text-sm sm:text-base font-albert font-thin text-[#333333] mb-2 text-center">
                     {venue.address && `${venue.address}, `}
                     {venue.city}
                     {venue.state && `, ${venue.state}`}
@@ -139,14 +210,14 @@ const Venue = () => {
                   </p>
 
                   {/* Schedule Times */}
-                  <div className="text-sm sm:text-base font-albert font-thin text-[#333333] mb-4 text-center md:text-left space-y-1">
+                  <div className="text-sm sm:text-base font-albert font-thin text-[#333333] mb-4 text-center space-y-1">
                     <p>Ceremony: {ceremony.time}</p>
                     <p>Reception: {reception.time} onwards</p>
                   </div>
                 </div>
 
                 {/* Google Maps Link Button */}
-                <div className="flex justify-center md:justify-start items-center">
+                <div className="flex justify-center items-center">
                   <SecondaryButton
                     href={venue.googleMapsUrl}
                     target="_blank"

@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Mail } from 'lucide-react'
 import SecondaryButton from './SecondaryButton'
+import EntourageModal from './EntourageModal'
 import { couple } from '../data'
 import { themeConfig } from '../config/themeConfig'
 import './pages/Details.css'
@@ -14,6 +15,7 @@ const RSVPSection = ({ onOpenRSVP }) => {
   const rsvpSectionRef = useRef(null)
   const rsvpTitleRef = useRef(null)
   const rsvpContentRef = useRef(null)
+  const [isEntourageModalOpen, setIsEntourageModalOpen] = useState(false)
 
   useEffect(() => {
     // RSVP Section animation
@@ -111,7 +113,7 @@ const RSVPSection = ({ onOpenRSVP }) => {
                 After this date, arrangements are final.
           </p>
           {onOpenRSVP && (
-            <div className="flex justify-center">
+            <div className="flex flex-col items-center gap-4">
               <button
                 onClick={onOpenRSVP}
                     className="px-6 py-3 bg-[#333333] text-white rounded-full hover:bg-[#333333]/80 transition-colors duration-200 font-albert flex items-center gap-2"
@@ -119,12 +121,20 @@ const RSVPSection = ({ onOpenRSVP }) => {
                     Respond
                     <Mail size={18} />
               </button>
+              <button
+                onClick={() => setIsEntourageModalOpen(true)}
+                className="text-sm sm:text-base font-albert font-thin underline hover:opacity-70 transition-opacity duration-200"
+                style={{ color: themeConfig.text.burntOrange }}
+              >
+                View Entourage
+              </button>
             </div>
           )}
             </div>
           </div>
         </div>
       </div>
+      <EntourageModal isOpen={isEntourageModalOpen} onClose={() => setIsEntourageModalOpen(false)} />
     </div>
   )
 }

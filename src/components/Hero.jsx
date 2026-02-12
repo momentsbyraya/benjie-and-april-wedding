@@ -133,7 +133,7 @@ const Hero = () => {
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/assets/music/When I Say I Love You.mp3"
+        src="/assets/music/Canon in D.mp3"
         loop
         onEnded={() => setIsPlaying(false)}
       />

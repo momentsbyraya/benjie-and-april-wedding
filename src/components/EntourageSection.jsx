@@ -413,33 +413,33 @@ const EntourageSection = () => {
             </div>
           )}
 
-          {/* Veil Sponsors */}
-          {veilSponsors && (
+            {/* Veil Sponsors */}
+            {veilSponsors && (
             <div className="mb-6">
-              <div ref={veilSponsorsRef} className="flex flex-col gap-2 justify-center items-center">
+                <div ref={veilSponsorsRef} className="flex flex-col gap-2 justify-center items-center">
                 <p className="text-[10px] sm:text-[13px] md:text-[15px] lg:text-[17px] caudex-bold mb-2 whitespace-nowrap text-center uppercase" style={{ color: themeConfig.text.sageGreen }}>To clothe us one / Veil</p>
-                {veilSponsors.names && veilSponsors.names.map((name, index) => (
-                  <p key={index} className="text-[8.5px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-poppins uppercase text-[#333333] whitespace-nowrap overflow-hidden text-ellipsis text-center">
-                    {name}
-                  </p>
-                ))}
+                  {veilSponsors.names && veilSponsors.names.map((name, index) => (
+                    <p key={index} className="text-[8.5px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-poppins uppercase text-[#333333] whitespace-nowrap overflow-hidden text-ellipsis text-center">
+                      {name}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Cord Sponsors */}
-          {cordSponsors && (
+            {/* Cord Sponsors */}
+            {cordSponsors && (
             <div className="mb-6">
-              <div ref={cordSponsorsRef} className="flex flex-col gap-2 justify-center items-center">
+                <div ref={cordSponsorsRef} className="flex flex-col gap-2 justify-center items-center">
                 <p className="text-[10px] sm:text-[13px] md:text-[15px] lg:text-[17px] caudex-bold mb-2 whitespace-nowrap text-center uppercase" style={{ color: themeConfig.text.sageGreen }}>To bind us together / Cord</p>
-                {cordSponsors.names && cordSponsors.names.map((name, index) => (
-                  <p key={index} className="text-[8.5px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-poppins uppercase text-[#333333] whitespace-nowrap overflow-hidden text-ellipsis text-center">
-                    {name}
-                  </p>
-                ))}
+                  {cordSponsors.names && cordSponsors.names.map((name, index) => (
+                    <p key={index} className="text-[8.5px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-poppins uppercase text-[#333333] whitespace-nowrap overflow-hidden text-ellipsis text-center">
+                      {name}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           {/* Secondary Sponsors */}
           {secondarySponsors && (

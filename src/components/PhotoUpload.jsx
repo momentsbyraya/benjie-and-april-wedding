@@ -36,12 +36,13 @@ const PhotoUpload = () => {
   }, [])
 
   return (
-    <div className="mt-20 relative pb-12 sm:pb-16">
-      <div className="relative overflow-visible">
-        <div className="relative overflow-hidden">
+    <div className="mt-20 relative pb-12 sm:pb-16" style={{ overflow: 'visible' }}>
+      <div className="relative" style={{ overflow: 'visible' }}>
+        <div className="relative" style={{ overflow: 'visible' }}>
           <div 
             ref={photoUploadRef} 
             className="text-center transition-opacity duration-500 ease-in-out"
+            style={{ overflow: 'visible' }}
           >
             {/* Upload Title */}
             <div>
@@ -63,7 +64,7 @@ const PhotoUpload = () => {
             </div>
 
             {/* QR Code Image and Details Side by Side */}
-            <div className="flex flex-row lg-custom:flex-col gap-6 md:gap-8 lg-custom:gap-6 items-stretch lg-custom:items-center lg-custom:justify-center">
+            <div className="flex flex-row lg-custom:flex-col gap-6 md:gap-8 lg-custom:gap-6 items-stretch lg-custom:items-center lg-custom:justify-center" style={{ overflow: 'visible' }}>
               {/* QR Code Image - 50% width on mobile, full width on 992px+ */}
               <div className="w-1/2 lg-custom:w-full lg-custom:flex lg-custom:justify-center">
                 <div className="w-full relative upload-qr-container" style={{ maxWidth: '350px' }}>
@@ -78,11 +79,21 @@ const PhotoUpload = () => {
               </div>
               
               {/* Upload Details - 50% width on mobile, full width on 992px+ */}
-              <div className="w-1/2 lg-custom:w-full lg-custom:h-fit lg-custom:flex lg-custom:flex-col lg-custom:justify-center lg-custom:items-center flex flex-col justify-between text-left lg-custom:text-center py-4 sm:py-6 upload-content-container">
+              <div className="w-1/2 lg-custom:w-full lg-custom:h-fit lg-custom:flex lg-custom:flex-col lg-custom:justify-center lg-custom:items-center flex flex-col justify-between text-left lg-custom:text-center py-4 sm:py-6 upload-content-container" style={{ overflow: 'visible' }}>
                 {/* Description */}
                 <p className="text-sm sm:text-base font-albert font-thin text-[#333333] mb-4 text-left lg-custom:text-center">
                   Share your photos and videos from our special day.
                 </p>
+
+                {/* Hashtags */}
+                <div className="mb-4 text-left lg-custom:text-center" style={{ overflow: 'visible', width: '100%' }}>
+                  <p className="text-sm sm:text-base font-albert font-medium text-[#333333] whitespace-nowrap" style={{ overflow: 'visible' }}>
+                    #AlvinigayNiLordKayNikka
+                  </p>
+                  <p className="text-sm sm:text-base font-albert font-medium text-[#333333] whitespace-nowrap" style={{ overflow: 'visible' }}>
+                    #AlvinFoundHisNikka
+                  </p>
+                </div>
 
                 {/* Upload Button */}
                 <div className="flex justify-start lg-custom:justify-center items-center">

@@ -1,20 +1,20 @@
 {
   "mainDressCode": {
     "title": "Attire Guide",
-    "description": "WE WOULD LOVE TO SEE YOU IN YOUR FORMAL ATTIRE THAT COMPLEMENTS OUR GARDEN WEDDING COLOR PALETTE"
+    "description": "Formal attire with these colors on our special day."
   },
   "sections": [
     {
       "title": "Principal Sponsors",
       "type": "text",
-      "description": "For Ninongs: Formal suit in burnt orange or brown tones. For Ninangs: Elegant long gown in burnt orange or brown.",
+      "description": "For Ninongs: Formal suit in black. For Ninangs: Floor-length gown in graceful sage green.",
       "image": "/assets/images/dresscode/sponsors.png"
     },
     {
       "title": "Guests",
       "type": "image",
-      "shortDescription": "Ladies: Elegant attire in terracotta, burnt orange, sage green, beige, or garden green.",
-      "description": "Ladies: We invite you to wear elegant attire in our garden wedding colors - terracotta, burnt orange, sage green, beige, or garden green. Gentlemen: Please wear a formal or semi-formal suit with a necktie or bowtie in complementary tones from our color palette.",
+      "shortDescription": "Ladies: Modest dress. Men: Long sleeves.",
+      "description": "Ladies: Modest dress. Men: Long sleeves.",
       "image": "/assets/images/dresscode/guests.png"
     }
   ]

@@ -182,7 +182,7 @@ function AppContent() {
   return (
     <div className="App min-h-screen wedding-gradient">
       <DynamicTitle />
-      <Watermark />
+      {/* <Watermark /> */}
       <ScrollToTop />
       {/* Loader - shows while preloading */}
       {isLoading && (
