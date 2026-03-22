@@ -1,14 +1,14 @@
 {
   "events": [
     {
-      "time": "2:00 PM",
-      "description": "Guests gathering",
+      "time": "1:30 PM",
+      "description": "Guest gathering",
       "image": "/assets/images/graphics/welcome-2.png",
-      "imageAlt": "Guests gathering",
+      "imageAlt": "Guest gathering",
       "position": "left"
     },
     {
-      "time": "2:30 PM",
+      "time": "2:00 PM",
       "description": "Wedding Ceremony",
       "image": "/assets/images/graphics/ceremony-2.png",
       "imageAlt": "Wedding Ceremony",

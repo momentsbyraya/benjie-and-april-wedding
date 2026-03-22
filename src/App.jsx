@@ -26,7 +26,7 @@ function AppContent() {
     const preloadImages = async () => {
       const criticalImages = [
         // Hero image - most important
-        '/assets/images/prenup/prenup5.jpg',  // Hero image
+        '/assets/images/prenup/DSC01018.jpg',  // Hero image
         // NavIndex images - all prenup photos used on home page
         '/assets/images/prenup/Proposal 5.jpg',  // Polaroid image
         '/assets/images/prenup/Proposal 1.jpg',  // RSVP container
@@ -115,7 +115,7 @@ function AppContent() {
             // Check if we're on the home page
             if (window.location.pathname === '/' || window.location.pathname === '') {
               // Look for hero image
-              const heroImg = document.querySelector('img[src="/assets/images/prenup/prenup5.jpg"]')
+              const heroImg = document.querySelector('img[src="/assets/images/prenup/DSC01018.jpg"]')
               if (heroImg) {
                 // Check if image is loaded and visible
                 if (heroImg.complete && heroImg.naturalHeight > 0) {

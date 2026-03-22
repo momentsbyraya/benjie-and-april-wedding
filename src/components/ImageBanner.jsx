@@ -1,7 +1,12 @@
 import React from 'react'
 import GradientLayer from './GradientLayer'
 
-const ImageBanner = ({ src, alt = "Banner image" }) => {
+const ImageBanner = ({
+  src,
+  alt = 'Banner image',
+  subtitle = 'The',
+  title = 'Details'
+}) => {
   return (
     <div className="relative z-20 w-screen" style={{ width: '100vw' }}>
       <div className="relative w-full h-[250px] sm:h-[250px] md:h-[300px] lg:h-[350px]">
@@ -40,13 +45,12 @@ const ImageBanner = ({ src, alt = "Banner image" }) => {
             <div className="w-full text-center">
               {/* The in Ballet font */}
               <h1 className="font-ballet text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-2" style={{ color: '#5A1E2A' }}>
-                The
+                {subtitle}
               </h1>
-              {/* Details in Tebranos font */}
               <h2 className="font-tebranos text-6xl sm:text-7xl md:text-8xl lg:text-9xl uppercase mb-4 -mt-6" style={{ 
                 color: '#5A1E2A'
               }}>
-                Details
+                {title}
               </h2>
             </div>
           </div>

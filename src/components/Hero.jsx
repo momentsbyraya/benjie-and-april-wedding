@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { Play, Pause } from 'lucide-react'
-import { couple } from '../data'
-import { venues } from '../data'
+import { couple, venues, audio } from '../data'
 import { themeConfig } from '../config/themeConfig'
 
 const Hero = () => {
@@ -129,40 +128,44 @@ const Hero = () => {
   }, [])
 
   return (
-    <div className="relative w-full" style={{ height: '100vh' }}>
+    <div className="relative w-full overflow-hidden bg-white" style={{ height: '100vh' }}>
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/assets/music/Christina Perri - A Thousand Years [Official Music Video].mp3"
+        src={audio.background}
         loop
         onEnded={() => setIsPlaying(false)}
       />
-      
-      <img 
-        src="/assets/images/prenup/prenup5.jpg" 
-        alt="Hero"
-        className="w-full h-full object-cover"
+
+      {/* Slight bleed past edges + overflow-hidden hides subpixel gaps vs parent / next section */}
+      <img
+        src="/assets/images/prenup/DSC01018.jpg"
+        alt="Heece and Joshua"
+        className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-[50%_18%] sm:object-[50%_22%] md:object-[50%_25%] lg:object-[50%_27%] xl:object-[50%_28%]"
+        fetchPriority="high"
+        decoding="async"
       />
-      
-      {/* Blurred White SVG Overlay at Top */}
-      <svg 
-        className="absolute top-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
-        preserveAspectRatio="none" 
-        viewBox="0 0 1200 400" 
+
+      {/* Blurred white overlay — pulled past top/left/right so no hairline shows */}
+      <svg
+        className="pointer-events-none absolute -top-2 left-1/2 z-10 h-[calc(16rem+16px)] w-[calc(100%+24px)] max-w-none -translate-x-1/2 sm:h-[calc(20rem+16px)] md:h-[calc(24rem+16px)] lg:h-[calc(28rem+20px)]"
+        preserveAspectRatio="none"
+        viewBox="0 0 1200 400"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="blur">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+          <filter id="heroBlurTop">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
           </filter>
           <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255, 255, 255, 0.95)" />
+            <stop offset="0%" stopColor="rgba(255, 255, 255, 1)" />
+            <stop offset="12%" stopColor="rgba(255, 255, 255, 0.95)" />
             <stop offset="40%" stopColor="rgba(255, 255, 255, 0.7)" />
             <stop offset="70%" stopColor="rgba(255, 255, 255, 0.3)" />
             <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
           </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#topGradient)" filter="url(#blur)" />
+        <rect width="100%" height="100%" fill="url(#topGradient)" filter="url(#heroBlurTop)" />
       </svg>
       
       {/* Couple Names, Date and Venue at Top */}
@@ -194,25 +197,25 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Blurred White SVG Overlay at Bottom */}
-      <svg 
-        className="absolute bottom-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
-        preserveAspectRatio="none" 
-        viewBox="0 0 1200 400" 
+      <svg
+        className="pointer-events-none absolute -bottom-2 left-1/2 z-10 h-[calc(16rem+16px)] w-[calc(100%+24px)] max-w-none -translate-x-1/2 sm:h-[calc(20rem+16px)] md:h-[calc(24rem+16px)] lg:h-[calc(28rem+20px)]"
+        preserveAspectRatio="none"
+        viewBox="0 0 1200 400"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="blurBottom">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+          <filter id="heroBlurBottom">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
           </filter>
           <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
             <stop offset="30%" stopColor="rgba(255, 255, 255, 0.3)" />
             <stop offset="60%" stopColor="rgba(255, 255, 255, 0.7)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0.95)" />
+            <stop offset="88%" stopColor="rgba(255, 255, 255, 0.95)" />
+            <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
           </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#blurBottom)" />
+        <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#heroBlurBottom)" />
       </svg>
 
       {/* Play/Pause Button - Bottom Right */}
