@@ -50,6 +50,14 @@ const Gallery = () => {
     'span 1',
   ]
 
+  /** Thumbnail crop tweaks (object-fit: cover) */
+  const thumbObjectPosition = (src) => {
+    if (src.includes('prenup1.jpg')) return 'center top'
+    if (src.includes('JGM04241.jpg')) return 'center 38%'
+    if (src.includes('JGM04077.jpg')) return 'center 45%'
+    return 'center center'
+  }
+
   const imageRefs = useRef([])
 
   useEffect(() => {
@@ -190,6 +198,14 @@ const Gallery = () => {
         <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" style={{ gridAutoRows: '1fr' }}>
           {galleryImages.map((image, index) => {
             const gridColumn = gridColumnPattern[index % gridColumnPattern.length]
+            const isJgm03893 = image.includes('JGM03893.jpg')
+            const isDsc00983 = image.includes('DSC00983.jpg')
+            const responsiveObjectClass = isJgm03893
+              ? 'object-center md:object-[center_38%]'
+              : isDsc00983
+                ? 'object-center min-[992px]:object-[center_18%]'
+                : ''
+            const skipInlineObjectPosition = isJgm03893 || isDsc00983
 
             return (
               <div
@@ -210,11 +226,12 @@ const Gallery = () => {
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
-                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                  className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${responsiveObjectClass}`}
                   style={{
                     height: '100%',
                     willChange: 'transform',
                     backfaceVisibility: 'hidden',
+                    ...(skipInlineObjectPosition ? {} : { objectPosition: thumbObjectPosition(image) }),
                   }}
                   loading="lazy"
                 />

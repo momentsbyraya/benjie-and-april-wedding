@@ -69,11 +69,11 @@ const SaveTheDateCounter = () => {
       style={{
         backgroundImage: 'url(/assets/images/prenup/prenup11.jpg)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 35%',
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="relative z-20 max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-between min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
+      <div className="relative z-20 max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-between min-h-[400px] sm:min-h-[500px] md:min-h-[600px] min-[992px]:min-h-[760px]">
         {/* Title */}
         <div className="text-center">
           <h2

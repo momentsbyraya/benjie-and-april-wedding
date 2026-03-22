@@ -1,5 +1,6 @@
 {
   "ceremony": {
+    "ceremonyPhoto": "/assets/images/venues/ceremony.jpg",
     "name": "San Antonio De Padua Church",
     "address": "",
     "city": "",
@@ -11,6 +12,7 @@
     "directionsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7"
   },
   "reception": {
+    "receptionPhoto": "/assets/images/venues/reception.png",
     "name": "Purok Mondalo Barangay Unidad Training Center, Cagwait Surigao del Sur",
     "address": "",
     "city": "",

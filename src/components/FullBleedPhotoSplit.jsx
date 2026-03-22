@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageLightbox from './ImageLightbox'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const cellClass =
   'relative m-0 p-0 overflow-hidden h-[42vw] max-h-[560px] min-h-[200px] sm:min-h-[240px] md:min-h-[280px]'
@@ -19,6 +23,9 @@ const FullBleedPhotoSplit = ({
   invertLayout = false,
 }) => {
   const [lightbox, setLightbox] = useState(null) // { src, alt } | null
+  const gridRef = useRef(null)
+  const leftPaneRef = useRef(null)
+  const rightPaneRef = useRef(null)
 
   const openLeft = () => setLightbox({ src: leftSrc, alt: leftAlt || 'Photo' })
   const openRight = () => setLightbox({ src: rightSrc, alt: rightAlt || 'Photo' })
@@ -32,15 +39,49 @@ const FullBleedPhotoSplit = ({
     },
   })
 
+  useEffect(() => {
+    const grid = gridRef.current
+    const leftEl = leftPaneRef.current
+    const rightEl = rightPaneRef.current
+    if (!grid || !leftEl || !rightEl) return
+
+    const fromX = (el, x) => gsap.set(el, { opacity: 0, x })
+    fromX(leftEl, -56)
+    fromX(rightEl, 56)
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: grid,
+        start: 'top 88%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+    tl.to(
+      leftEl,
+      { opacity: 1, x: 0, duration: 0.85, ease: 'power2.out' },
+      0
+    ).to(
+      rightEl,
+      { opacity: 1, x: 0, duration: 0.85, ease: 'power2.out' },
+      0.1
+    )
+
+    return () => {
+      tl.scrollTrigger?.kill()
+      tl.kill()
+    }
+  }, [leftSrc, rightSrc, invertLayout])
+
   return (
     <>
       <div
+        ref={gridRef}
         className="m-0 p-0 max-w-none overflow-x-clip grid grid-cols-3 gap-0"
         style={{ width: '100vw', margin: 0, padding: 0 }}
       >
         {invertLayout ? (
           <>
-            <div className={`col-span-1 ${cellClass}`}>
+            <div ref={leftPaneRef} className={`col-span-1 ${cellClass}`}>
               <img
                 src={leftSrc}
                 alt={leftAlt}
@@ -54,7 +95,7 @@ const FullBleedPhotoSplit = ({
                 {...imgKeyHandlers(openLeft)}
               />
             </div>
-            <div className={`col-span-2 ${cellClass}`}>
+            <div ref={rightPaneRef} className={`col-span-2 ${cellClass}`}>
               <img
                 src={rightSrc}
                 alt={rightAlt}
@@ -71,7 +112,7 @@ const FullBleedPhotoSplit = ({
           </>
         ) : (
           <>
-            <div className={`col-span-2 ${cellClass}`}>
+            <div ref={leftPaneRef} className={`col-span-2 ${cellClass}`}>
               <img
                 src={leftSrc}
                 alt={leftAlt}
@@ -85,7 +126,7 @@ const FullBleedPhotoSplit = ({
                 {...imgKeyHandlers(openLeft)}
               />
             </div>
-            <div className={`col-span-1 ${cellClass}`}>
+            <div ref={rightPaneRef} className={`col-span-1 ${cellClass}`}>
               <img
                 src={rightSrc}
                 alt={rightAlt}

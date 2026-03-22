@@ -20,9 +20,17 @@ const Venue = () => {
   const ceremony = venuesData.ceremony
   const reception = venuesData.reception
 
+  const ceremonyPhoto = ceremony.ceremonyPhoto || '/assets/images/venues/ceremony.jpg'
+  const receptionPhoto = reception.receptionPhoto
+
   const venueSlides = [
-    { src: '/assets/images/venues/reception.JPG', alt: 'Ceremony Venue', venue: ceremony },
-    { src: '/assets/images/venues/ceremony.JPG', alt: 'Reception Venue', venue: reception }
+    { src: ceremonyPhoto, alt: 'Ceremony venue', venue: ceremony },
+    {
+      src: receptionPhoto,
+      alt: 'Reception venue',
+      venue: reception,
+      fallbackText: reception.name,
+    },
   ]
 
   const nextImage = () => {
@@ -138,18 +146,18 @@ const Venue = () => {
                     {venueSlides.map((slide, index) => (
                       <div
                         key={index}
-                        className={`min-w-full aspect-square flex-shrink-0 ${index === 1 ? 'flex items-center justify-center p-4' : ''}`}
+                        className={`min-w-full aspect-square flex-shrink-0 ${!slide.src ? 'flex items-center justify-center p-4' : ''}`}
                       >
-                        {index === 1 ? (
-                          <span className="text-center text-sm sm:text-base font-boska text-burgundy-dark leading-tight">
-                            {reception.name}
-                          </span>
-                        ) : (
+                        {slide.src ? (
                           <img
                             src={slide.src}
                             alt={slide.alt}
                             className="w-full h-full object-cover rounded-full"
                           />
+                        ) : (
+                          <span className="text-center text-sm sm:text-base font-boska text-burgundy-dark leading-tight px-2">
+                            {slide.fallbackText}
+                          </span>
                         )}
                       </div>
                     ))}
@@ -212,16 +220,16 @@ const Venue = () => {
                   className="flex-1 flex flex-col gap-4 min-w-0 max-w-[320px] lg:max-w-[380px]"
                 >
                   <div className="w-full aspect-square relative venue-image-container flex-shrink-0 overflow-hidden rounded-full flex items-center justify-center bg-white/90 border-2 border-burgundy-wine/20">
-                    {index === 1 ? (
-                      <span className="text-center text-base sm:text-lg lg:text-xl font-boska text-burgundy-dark leading-tight px-4">
-                        {reception.name}
-                      </span>
-                    ) : (
+                    {slide.src ? (
                       <img
                         src={slide.src}
                         alt={slide.alt}
                         className="w-full h-full object-cover rounded-full"
                       />
+                    ) : (
+                      <span className="text-center text-base sm:text-lg lg:text-xl font-boska text-burgundy-dark leading-tight px-4">
+                        {slide.fallbackText}
+                      </span>
                     )}
                   </div>
                   <div className="flex flex-col gap-2 text-center flex-1">

@@ -90,7 +90,7 @@ const RSVPSection = ({ onOpenRSVP }) => {
         aria-hidden
       />
       <div className="relative z-10 flex items-center justify-center py-16 sm:py-20 md:py-24">
-        <div className="bg-white/50 px-6 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12 max-w-3xl mx-auto">
+        <div className="bg-white/50 px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-11 lg:px-7 lg:py-10 xl:px-6 xl:py-9 max-w-3xl md:max-w-2xl lg:max-w-xl xl:max-w-lg mx-auto w-full">
       <div className="text-center mb-12 sm:mb-16">
             {/* Single Flower 3 Image */}
         <div className="flex justify-center mb-4">
