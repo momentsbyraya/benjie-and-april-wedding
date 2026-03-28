@@ -2,15 +2,10 @@ import React, { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { X } from 'lucide-react'
-import { couple } from '../data'
 import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
 const RSVP_MODAL_BG = '/assets/images/prenup/JGM04077.jpg'
-
-const RSVP_FORM_EMBED_URL =
-  couple.rsvpGoogleFormEmbedUrl ||
-  'https://docs.google.com/forms/d/e/1FAIpQLScigmo-gY2rNBfFwyrPvs9o932AVIQDCFisMVGpf16wsaD7KA/viewform?embedded=true'
 
 const RSVPModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null)
@@ -116,13 +111,10 @@ const RSVPModal = ({ isOpen, onClose }) => {
           </button>
         </header>
 
-        <div className="flex-1 min-h-0 flex flex-col bg-white/95 backdrop-blur-sm">
-          <iframe
-            title="RSVP — Benjie and April"
-            src={RSVP_FORM_EMBED_URL}
-            className="w-full flex-1 min-h-0 border-0 rsvp-modal-content"
-            allow="fullscreen"
-          />
+        <div className="flex flex-1 min-h-0 flex-col items-center justify-center bg-white/95 px-6 py-16 backdrop-blur-sm">
+          <p className="text-center font-albert text-lg uppercase tracking-[0.2em] text-burgundy-dark sm:text-xl">
+            TO BE ADDED
+          </p>
         </div>
       </div>
     </div>,
