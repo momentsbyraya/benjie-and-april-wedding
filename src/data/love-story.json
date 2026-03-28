@@ -1,23 +1,23 @@
 {
   "title": "Our Love Story",
-  "content": "He was my student during my internship, seated by the window with sunlight resting on his quiet smile.\n\nWhat started as simple lessons and after-class questions slowly turned into shared laughter and lingering glances.\n\nSomewhere between lectures and campus hallways, we found something sweeter than we ever planned — each other. 💗",
+  "content": "She was one of the guests of my churchmate. I asked my churchmate for her name, then I stalked her on the blue app. After many days, I finally messaged her.\n\nWe started with casual chatting and getting to know each other, and it eventually turned into something real.\n\nWe laughed together, supported each other through ups and downs, and built something special. Through it all, we've grown closer and stronger, showing that sometimes the best connections happen.",
   "timeline": [
     {
-      "title": "The Beginning",
-      "date": "Internship",
-      "description": "He was my student during my internship, seated by the window with sunlight resting on his quiet smile.",
+      "title": "How we met",
+      "date": "Church & the blue app",
+      "description": "She was one of the guests of my churchmate. I asked my churchmate for her name, then I stalked her on the blue app. After many days, I finally messaged her.",
       "image": "couple2"
     },
     {
-      "title": "Lessons & Laughter",
-      "date": "Getting to Know",
-      "description": "What started as simple lessons and after-class questions slowly turned into shared laughter and lingering glances.",
+      "title": "From hello to real",
+      "date": "Getting to know",
+      "description": "We started with casual chatting and getting to know each other, and it eventually turned into something real.",
       "image": "couple4"
     },
     {
-      "title": "Finding Each Other",
-      "date": "Our Story",
-      "description": "Somewhere between lectures and campus hallways, we found something sweeter than we ever planned — each other. 💗",
+      "title": "Closer & stronger",
+      "date": "Our story",
+      "description": "We laughed together, supported each other through ups and downs, and built something special. Through it all, we've grown closer and stronger, showing that sometimes the best connections happen.",
       "image": "couple7"
     }
   ]

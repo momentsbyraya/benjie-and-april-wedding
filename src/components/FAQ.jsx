@@ -21,7 +21,10 @@ const FAQ = () => {
       'Wedding Ceremony Location': MapPin,
       'Wedding Reception Location': UtensilsCrossed,
       'What time is the wedding?': Clock,
+      'What time should I arrive?': Clock,
+      'What happens if I arrive late?': Clock,
       'What is the wedding theme and dress code?': Palette,
+      'What is the dress code?': Palette,
       'Can I bring a plus one?': Users,
       'What to wear?': Palette,
       "Where's the reception?": UtensilsCrossed,
@@ -160,15 +163,15 @@ const FAQ = () => {
               return (
                 <div key={index}>
                   <div className="mb-2">
-                    <p className="text-base sm:text-lg font-albert text-burgundy-cream mb-2 faq-question-bold">
+                    <p className="text-base sm:text-lg font-albert text-[#F4F1EC] mb-2 faq-question-bold">
                       Q: {text}
                     </p>
-                    <p className="text-sm sm:text-base font-albert font-thin text-burgundy-cream whitespace-pre-line">
+                    <p className="text-sm sm:text-base font-albert font-thin text-[#F4F1EC]/95 whitespace-pre-line">
                       A: {parseAnswerWithPhoneNumbers(item.answer)}
                     </p>
                   </div>
                   {index < faqItems.faqData.length - 1 && (
-                    <div className="h-px bg-burgundy-cream/30 mt-6"></div>
+                    <div className="h-px bg-[#F4F1EC]/25 mt-6"></div>
                   )}
                 </div>
               )

@@ -10,24 +10,24 @@ export default {
         'lg-custom': '992px',
       },
       colors: {
-        // Burgundy Red Wine palette - Deep Burgundy #5A1E2A, Champagne Beige #F3E8E2, Dusty Rose #C08A8F
+        // Token names preserved (burgundy-*) — mapped to elegant olive / sage palette
         'burgundy': {
-          cream: '#F3E8E2',   // Soft Champagne Beige (background sections)
-          tan: '#C08A8F',     // Warm Dusty Rose (secondary accents, hover)
-          wine: '#5A1E2A',    // Deep Burgundy Red Wine (primary)
-          dark: '#5A1E2A',    // Deep Burgundy (headings, buttons, accents)
+          cream: '#E8F0E8',   // Light sage (section backgrounds)
+          tan: '#739072',     // Olive soft (accents, hover)
+          wine: '#4F6F52',    // Olive main (primary UI)
+          dark: '#3A4D39',    // Olive dark (hero, headings, emphasis)
         },
         'wedding': {
-          50: '#F3E8E2',
-          100: '#F0E0D8',
-          200: '#C08A8F',
-          300: '#a86d72',
-          400: '#8a4a50',
-          500: '#5A1E2A',
-          600: '#4d1a24',
-          700: '#40161e',
-          800: '#5A1E2A',
-          900: '#2d0f15',
+          50: '#F4F1EC',
+          100: '#E8F0E8',
+          200: '#A3B18A',
+          300: '#8FA672',
+          400: '#739072',
+          500: '#4F6F52',
+          600: '#3A4D39',
+          700: '#2E3B2F',
+          800: '#3A4D39',
+          900: '#1e2720',
         },
         'rose': {
           50: '#fff1f2',
@@ -123,4 +123,4 @@ export default {
     },
   },
   plugins: [],
-} 
+}

@@ -3,7 +3,7 @@ import { couple } from '../data'
 // Countdown utility functions
 export const getTimeUntilWedding = () => {
   // Get wedding date and time from couple data
-  const dateStr = couple.wedding.date // "2025-02-22"
+  const dateStr = couple.wedding.date // ISO date e.g. "2026-04-25"
   const timeStr = couple.wedding.time // "3:30 PM"
   
   // Parse the date string

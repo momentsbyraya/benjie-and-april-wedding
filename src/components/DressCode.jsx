@@ -17,38 +17,12 @@ const DressCode = () => {
   // State for tooltip visibility
   const [activeTooltip, setActiveTooltip] = useState(null)
   
-  // Burgundy Red Wine palette
-  const BURGUNDY_DARK = '#5A1E2A'
-  const BURGUNDY_WINE = '#5A1E2A'
-  const BURGUNDY_TAN = '#C08A8F'
-  const BURGUNDY_CREAM = '#F3E8E2'
-
-  // Color swatches for Principal Sponsors (black for Ninongs, burgundy wine for Ninangs)
-  const sponsorColors = [
-    '#000000',   // Black (for Ninongs)
-    BURGUNDY_WINE  // Burgundy wine (for Ninangs)
+  // Shared palette swatches (Principal Sponsors + Guests)
+  const paletteSwatches = [
+    { color: '#3A4D39', label: 'Olive Green' },
+    { color: '#C8E0C8', label: 'Light Green' },
+    { color: '#5C7A5C', label: 'Medium Green' },
   ]
-
-  // Color swatches for Guests (burgundy red wine palette)
-  const guestColors = [
-    BURGUNDY_DARK,   // Dark burgundy
-    BURGUNDY_WINE,   // Wine
-    BURGUNDY_TAN,    // Tan
-    BURGUNDY_CREAM,  // Cream
-    '#a86d72',       // Lighter dusty rose variant
-    '#F3E8E2'        // Champagne beige
-  ]
-
-  // Color name mappings
-  const colorNames = {
-    '#000000': 'Black',
-    [BURGUNDY_DARK]: 'Burgundy Dark',
-    [BURGUNDY_WINE]: 'Burgundy Wine',
-    [BURGUNDY_TAN]: 'Burgundy Tan',
-    [BURGUNDY_CREAM]: 'Cream',
-    '#a86d72': 'Light Dusty Rose',
-    '#F3E8E2': 'Champagne Beige'
-  }
 
   useEffect(() => {
     // Dress Code Title animation
@@ -223,7 +197,7 @@ const DressCode = () => {
                         
                         {/* Color Swatches */}
                         <div className="flex gap-2 justify-end lg-custom:justify-start">
-                          {sponsorColors.map((color, index) => (
+                          {paletteSwatches.map(({ color, label }, index) => (
                     <div 
                               key={index}
                               className="relative group"
@@ -234,7 +208,7 @@ const DressCode = () => {
                               <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded cursor-pointer" style={{ backgroundColor: color }}></div>
                               {activeTooltip === `sponsors-${index}` && (
                                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-burgundy-dark text-white text-xs rounded whitespace-nowrap z-[9999] pointer-events-none color-swatch-tooltip" style={{ position: 'absolute' }}>
-                                  {colorNames[color]}
+                                  {label}
                                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-burgundy-dark"></div>
                       </div>
                               )}
@@ -316,7 +290,7 @@ const DressCode = () => {
                         
                         {/* Color Swatches */}
                         <div className="flex justify-start lg-custom:justify-start" style={{ gap: '-4px' }}>
-                          {guestColors.map((color, index) => (
+                          {paletteSwatches.map(({ color, label }, index) => (
                             <div
                               key={index}
                               className="relative group"
@@ -328,7 +302,7 @@ const DressCode = () => {
                               <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-300 rounded cursor-pointer" style={{ backgroundColor: color }}></div>
                               {activeTooltip === `guests-${index}` && (
                                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-burgundy-dark text-white text-xs rounded whitespace-nowrap z-[9999] pointer-events-none color-swatch-tooltip" style={{ position: 'absolute' }}>
-                                  {colorNames[color]}
+                                  {label}
                                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-burgundy-dark"></div>
                                 </div>
                               )}

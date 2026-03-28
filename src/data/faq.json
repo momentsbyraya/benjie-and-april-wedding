@@ -1,16 +1,24 @@
 {
   "faqData": [
     {
+      "question": "What time should I arrive?",
+      "answer": "Guests are encouraged to arrive at least 30 minutes before the ceremony to allow time for seating and to avoid disruptions."
+    },
+    {
+      "question": "What is the dress code?",
+      "answer": "The dress code is semi-formal. We kindly ask guests to dress appropriately for the occasion — olive, sage, and soft neutrals fit our wedding palette. Please avoid wearing white so the bride can shine."
+    },
+    {
       "question": "Can I bring a plus one?",
-      "answer": "No, we are unable to accommodate additional guests. To keep our celebration intimate and simple, we kindly ask that guests attend as indicated on their invitation. We truly appreciate your understanding and can't wait to celebrate with you."
+      "answer": "Due to limited seating, we respectfully request that only those listed on the invitation attend. Thank you for understanding."
     },
     {
-      "question": "What to wear?",
-      "answer": "Our dress code is Burgundy Red Wine or a shade close to that color. We'd love our guests to dress in smart casual or semi-formal attire in this palette. Please avoid wearing white so the bride can shine."
+      "question": "Are children allowed?",
+      "answer": "We love your little ones, and this will be a family-friendly event."
     },
     {
-      "question": "Where's the reception?",
-      "answer": "Purok Mondalo Barangay Unidad Training Center, Cagwait Surigao del Sur"
+      "question": "What happens if I arrive late?",
+      "answer": "To maintain the solemnity of the ceremony, late guests may be asked to wait until an appropriate moment before being seated."
     }
   ]
 }

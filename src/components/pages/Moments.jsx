@@ -6,6 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import ImageBanner from '../ImageBanner'
 import { loveStory } from '../../data'
+import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../../config/prenupPlaceholder'
+import PrenupPlaceholder from '../PrenupPlaceholder'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -252,12 +254,16 @@ const Moments = () => {
                       setSelectedImageIndex(index)
                     }}
                   >
-                    <img
-                      src={image}
-                      alt={`Gallery image ${index + 1}`}
-                      className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                    {shouldUsePrenupPlaceholder(image) ? (
+                      <PrenupPlaceholder className="min-h-[200px] w-full sm:min-h-[280px]" />
+                    ) : (
+                      <img
+                        src={image}
+                        alt={`Gallery image ${index + 1}`}
+                        className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
@@ -349,17 +355,21 @@ const Moments = () => {
                         setSelectedImageIndex(firstGalleryImage.length + index)
                       }}
                     >
-                      <img
-                        src={image}
-                        alt={`Gallery ${index + 1}`}
-                        className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${image.includes('DSC_4307') ? 'lg:object-[center_30%]' : ''}`}
-                        style={{
-                          height: '100%',
-                          willChange: 'transform',
-                          backfaceVisibility: 'hidden'
-                        }}
-                        loading="lazy"
-                      />
+                      {shouldUsePrenupPlaceholder(image) ? (
+                        <PrenupPlaceholder className="h-full w-full min-h-[120px]" />
+                      ) : (
+                        <img
+                          src={image}
+                          alt={`Gallery ${index + 1}`}
+                          className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${image.includes('DSC_4307') ? 'lg:object-[center_30%]' : ''}`}
+                          style={{
+                            height: '100%',
+                            willChange: 'transform',
+                            backfaceVisibility: 'hidden'
+                          }}
+                          loading="lazy"
+                        />
+                      )}
                     </div>
                   )
                 })}
@@ -464,12 +474,21 @@ const Moments = () => {
 
             {/* Image */}
             <div className="relative z-10 max-w-7xl w-full max-h-[90vh] flex items-center justify-center">
-              <img
-                src={selectedImage}
-                alt="Full size image"
-                className="max-w-full max-h-[90vh] w-auto h-auto object-contain"
-                onClick={(e) => e.stopPropagation()}
-              />
+              {shouldUsePrenupPlaceholder(selectedImage) ? (
+                <p
+                  className="text-white font-albert text-lg sm:text-2xl tracking-[0.2em] uppercase text-center px-8"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {PRENUP_PLACEHOLDER_TEXT}
+                </p>
+              ) : (
+                <img
+                  src={selectedImage}
+                  alt="Full size image"
+                  className="max-w-full max-h-[90vh] w-auto h-auto object-contain"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
             </div>
           </div>,
           document.body

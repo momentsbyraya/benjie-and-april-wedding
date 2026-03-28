@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageLightbox from './ImageLightbox'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,8 +29,15 @@ const FullBleedPhotoSplit = ({
   const leftPaneRef = useRef(null)
   const rightPaneRef = useRef(null)
 
-  const openLeft = () => setLightbox({ src: leftSrc, alt: leftAlt || 'Photo' })
-  const openRight = () => setLightbox({ src: rightSrc, alt: rightAlt || 'Photo' })
+  const leftPlaceholder = shouldUsePrenupPlaceholder(leftSrc)
+  const rightPlaceholder = shouldUsePrenupPlaceholder(rightSrc)
+
+  const openLeft = () => {
+    if (!leftPlaceholder) setLightbox({ src: leftSrc, alt: leftAlt || 'Photo' })
+  }
+  const openRight = () => {
+    if (!rightPlaceholder) setLightbox({ src: rightSrc, alt: rightAlt || 'Photo' })
+  }
 
   const imgKeyHandlers = (open) => ({
     onKeyDown: (e) => {
@@ -82,63 +91,79 @@ const FullBleedPhotoSplit = ({
         {invertLayout ? (
           <>
             <div ref={leftPaneRef} className={`col-span-1 ${cellClass}`}>
-              <img
-                src={leftSrc}
-                alt={leftAlt}
-                className={splitImgClass}
-                loading="lazy"
-                decoding="async"
-                role="button"
-                tabIndex={0}
-                aria-label={leftAlt ? `View full size: ${leftAlt}` : 'View full size'}
-                onClick={openLeft}
-                {...imgKeyHandlers(openLeft)}
-              />
+              {leftPlaceholder ? (
+                <PrenupPlaceholder className="absolute inset-0 m-0 p-0 h-full w-full" />
+              ) : (
+                <img
+                  src={leftSrc}
+                  alt={leftAlt}
+                  className={splitImgClass}
+                  loading="lazy"
+                  decoding="async"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={leftAlt ? `View full size: ${leftAlt}` : 'View full size'}
+                  onClick={openLeft}
+                  {...imgKeyHandlers(openLeft)}
+                />
+              )}
             </div>
             <div ref={rightPaneRef} className={`col-span-2 ${cellClass}`}>
-              <img
-                src={rightSrc}
-                alt={rightAlt}
-                className={splitImgClass}
-                loading="lazy"
-                decoding="async"
-                role="button"
-                tabIndex={0}
-                aria-label={rightAlt ? `View full size: ${rightAlt}` : 'View full size'}
-                onClick={openRight}
-                {...imgKeyHandlers(openRight)}
-              />
+              {rightPlaceholder ? (
+                <PrenupPlaceholder className="absolute inset-0 m-0 p-0 h-full w-full" />
+              ) : (
+                <img
+                  src={rightSrc}
+                  alt={rightAlt}
+                  className={splitImgClass}
+                  loading="lazy"
+                  decoding="async"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={rightAlt ? `View full size: ${rightAlt}` : 'View full size'}
+                  onClick={openRight}
+                  {...imgKeyHandlers(openRight)}
+                />
+              )}
             </div>
           </>
         ) : (
           <>
             <div ref={leftPaneRef} className={`col-span-2 ${cellClass}`}>
-              <img
-                src={leftSrc}
-                alt={leftAlt}
-                className={splitImgClass}
-                loading="lazy"
-                decoding="async"
-                role="button"
-                tabIndex={0}
-                aria-label={leftAlt ? `View full size: ${leftAlt}` : 'View full size'}
-                onClick={openLeft}
-                {...imgKeyHandlers(openLeft)}
-              />
+              {leftPlaceholder ? (
+                <PrenupPlaceholder className="absolute inset-0 m-0 p-0 h-full w-full" />
+              ) : (
+                <img
+                  src={leftSrc}
+                  alt={leftAlt}
+                  className={splitImgClass}
+                  loading="lazy"
+                  decoding="async"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={leftAlt ? `View full size: ${leftAlt}` : 'View full size'}
+                  onClick={openLeft}
+                  {...imgKeyHandlers(openLeft)}
+                />
+              )}
             </div>
             <div ref={rightPaneRef} className={`col-span-1 ${cellClass}`}>
-              <img
-                src={rightSrc}
-                alt={rightAlt}
-                className={splitImgClass}
-                loading="lazy"
-                decoding="async"
-                role="button"
-                tabIndex={0}
-                aria-label={rightAlt ? `View full size: ${rightAlt}` : 'View full size'}
-                onClick={openRight}
-                {...imgKeyHandlers(openRight)}
-              />
+              {rightPlaceholder ? (
+                <PrenupPlaceholder className="absolute inset-0 m-0 p-0 h-full w-full" />
+              ) : (
+                <img
+                  src={rightSrc}
+                  alt={rightAlt}
+                  className={splitImgClass}
+                  loading="lazy"
+                  decoding="async"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={rightAlt ? `View full size: ${rightAlt}` : 'View full size'}
+                  onClick={openRight}
+                  {...imgKeyHandlers(openRight)}
+                />
+              )}
             </div>
           </>
         )}

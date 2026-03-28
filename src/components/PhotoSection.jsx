@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageLightbox from './ImageLightbox'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -26,6 +28,14 @@ const PhotoSection = ({
     { src: '/assets/images/prenup/APA_0891.JPG', alt: 'Photo 3', label: 'Love' }
   ]
   const displayImages = images.length > 0 ? images : defaultImages
+
+  const openLightbox = (img) => {
+    if (shouldUsePrenupPlaceholder(img.src)) return
+    setLightbox({
+      src: img.src,
+      alt: img.alt || img.label || 'Photo',
+    })
+  }
   
   useEffect(() => {
     // Set initial states
@@ -212,36 +222,39 @@ const PhotoSection = ({
               ref={leftPhotoRef}
               role="button"
               tabIndex={0}
-              onClick={() =>
-                setLightbox({
-                  src: displayImages[0].src,
-                  alt: displayImages[0].alt || displayImages[0].label || 'Photo',
-                })
-              }
+              onClick={() => openLightbox(displayImages[0])}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  setLightbox({
-                    src: displayImages[0].src,
-                    alt: displayImages[0].alt || displayImages[0].label || 'Photo',
-                  })
+                  openLightbox(displayImages[0])
                 }
               }}
-              className="absolute -top-6 -left-8 sm:left-4 w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-lg transform -rotate-12 opacity-90 cursor-pointer"
+              className={`absolute -top-6 -left-8 sm:left-4 w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-lg transform -rotate-12 opacity-90 ${shouldUsePrenupPlaceholder(displayImages[0].src) ? 'cursor-default' : 'cursor-pointer'}`}
               style={{
                 border: '4px solid white',
                 borderTop: '4px solid white'
               }}
             >
-              <div 
-                className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${displayImages[0].src})`,
-                  borderTop: '4px solid white',
-                  borderLeft: '4px solid white',
-                  borderRight: '4px solid white'
-                }}
-              ></div>
+              {shouldUsePrenupPlaceholder(displayImages[0].src) ? (
+                <PrenupPlaceholder
+                  className="w-full h-40 sm:h-60 lg:h-72"
+                  style={{
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              ) : (
+                <div 
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${displayImages[0].src})`,
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              )}
               <div className="p-2 text-center">
                 <div className="text-sm sm:text-lg text-[#800000] font-handwritten">
                   {displayImages[0].label || 'Memories'}
@@ -256,36 +269,39 @@ const PhotoSection = ({
               ref={middlePhotoRef}
               role="button"
               tabIndex={0}
-              onClick={() =>
-                setLightbox({
-                  src: displayImages[1].src,
-                  alt: displayImages[1].alt || displayImages[1].label || 'Photo',
-                })
-              }
+              onClick={() => openLightbox(displayImages[1])}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  setLightbox({
-                    src: displayImages[1].src,
-                    alt: displayImages[1].alt || displayImages[1].label || 'Photo',
-                  })
+                  openLightbox(displayImages[1])
                 }
               }}
-              className="relative w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-xl transform rotate-3 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className={`relative w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-xl transform rotate-3 ${shouldUsePrenupPlaceholder(displayImages[1].src) ? 'cursor-default' : 'cursor-pointer hover:scale-105 transition-transform duration-300'}`}
               style={{
                 border: '4px solid white',
                 borderTop: '4px solid white'
               }}
             >
-              <div 
-                className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${displayImages[1].src})`,
-                  borderTop: '4px solid white',
-                  borderLeft: '4px solid white',
-                  borderRight: '4px solid white'
-                }}
-              ></div>
+              {shouldUsePrenupPlaceholder(displayImages[1].src) ? (
+                <PrenupPlaceholder
+                  className="w-full h-40 sm:h-60 lg:h-72"
+                  style={{
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              ) : (
+                <div 
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${displayImages[1].src})`,
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              )}
               <div className="p-2 text-center">
                 <div className="text-sm sm:text-lg text-[#800000] font-handwritten">
                   {displayImages[1].label || 'Together'}
@@ -300,36 +316,39 @@ const PhotoSection = ({
               ref={rightPhotoRef}
               role="button"
               tabIndex={0}
-              onClick={() =>
-                setLightbox({
-                  src: displayImages[2].src,
-                  alt: displayImages[2].alt || displayImages[2].label || 'Photo',
-                })
-              }
+              onClick={() => openLightbox(displayImages[2])}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  setLightbox({
-                    src: displayImages[2].src,
-                    alt: displayImages[2].alt || displayImages[2].label || 'Photo',
-                  })
+                  openLightbox(displayImages[2])
                 }
               }}
-              className="absolute -top-4 -right-8 sm:right-4 w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-lg transform rotate-6 cursor-pointer"
+              className={`absolute -top-4 -right-8 sm:right-4 w-40 h-48 sm:w-60 sm:h-72 lg:w-72 lg:h-88 bg-white shadow-lg transform rotate-6 ${shouldUsePrenupPlaceholder(displayImages[2].src) ? 'cursor-default' : 'cursor-pointer'}`}
               style={{
                 border: '4px solid white',
                 borderTop: '4px solid white'
               }}
             >
-              <div 
-                className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${displayImages[2].src})`,
-                  borderTop: '4px solid white',
-                  borderLeft: '4px solid white',
-                  borderRight: '4px solid white'
-                }}
-              ></div>
+              {shouldUsePrenupPlaceholder(displayImages[2].src) ? (
+                <PrenupPlaceholder
+                  className="w-full h-40 sm:h-60 lg:h-72"
+                  style={{
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              ) : (
+                <div 
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${displayImages[2].src})`,
+                    borderTop: '4px solid white',
+                    borderLeft: '4px solid white',
+                    borderRight: '4px solid white'
+                  }}
+                />
+              )}
               <div className="p-2 text-center">
                 <div className="text-sm sm:text-lg text-[#800000] font-handwritten">
                   {displayImages[2].label || 'Love'}

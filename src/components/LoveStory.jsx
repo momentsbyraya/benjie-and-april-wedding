@@ -5,6 +5,8 @@ import { createPortal } from 'react-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { loveStory } from '../data'
 import { themeConfig } from '../config/themeConfig'
+import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
@@ -177,16 +179,27 @@ const LoveStory = () => {
       onClick={() => handleImageClick(index)}
     >
       <div className="relative">
-        <img 
-          src={image}
-          alt={`Love story moment ${index + 1}`}
-          className="w-full aspect-square object-cover"
-          style={{
-            border: '2px solid #F3E8E2',
-            borderBottom: 'none',
-            display: 'block'
-          }}
-        />
+        {shouldUsePrenupPlaceholder(image) ? (
+          <PrenupPlaceholder
+            className="w-full aspect-square"
+            style={{
+              border: '2px solid #A3B18A',
+              borderBottom: 'none',
+              display: 'block'
+            }}
+          />
+        ) : (
+          <img 
+            src={image}
+            alt={`Love story moment ${index + 1}`}
+            className="w-full aspect-square object-cover"
+            style={{
+              border: '2px solid #A3B18A',
+              borderBottom: 'none',
+              display: 'block'
+            }}
+          />
+        )}
         {/* Stamp overlay */}
         <img 
           src="/assets/images/graphics/stamp.png"
@@ -262,7 +275,7 @@ const LoveStory = () => {
                       >
                         <path
                           d="M 50 0 Q 32 22, 50 45 T 50 100"
-                          stroke="#5A1E2A"
+                          stroke="#3A4D39"
                           strokeWidth="2"
                           fill="none"
                           strokeDasharray="4,4"
@@ -273,7 +286,7 @@ const LoveStory = () => {
                       <div 
                         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full"
                         style={{ 
-                          backgroundColor: '#5A1E2A',
+                          backgroundColor: '#4F6F52',
                           opacity: 0.45
                         }}
                       />
@@ -302,7 +315,7 @@ const LoveStory = () => {
                       </div>
                     )}
                     <div className={`text-center sm:text-left ${imageCount > 0 ? 'flex-1' : 'w-full'}`}>
-                      <p className="text-base sm:text-lg font-albert font-thin text-burgundy-dark leading-relaxed">
+                      <p className="text-base sm:text-lg font-albert font-thin text-[#2E3B2F] leading-relaxed">
                         {formatParagraph(paragraph)}
                       </p>
                     </div>
@@ -370,11 +383,19 @@ const LoveStory = () => {
             className="relative z-10 max-w-[90vw] max-h-[90vh] flex items-center justify-center"
             style={{ pointerEvents: 'none' }}
           >
-            <img 
-              src={polaroidImages[currentImageIndex]}
-              alt={`Love story image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+            {shouldUsePrenupPlaceholder(polaroidImages[currentImageIndex]) ? (
+              <div className="max-w-full max-h-[90vh] flex items-center justify-center px-8">
+                <p className="text-white font-albert text-lg sm:text-2xl tracking-[0.2em] uppercase text-center">
+                  {PRENUP_PLACEHOLDER_TEXT}
+                </p>
+              </div>
+            ) : (
+              <img 
+                src={polaroidImages[currentImageIndex]}
+                alt={`Love story image ${currentImageIndex + 1}`}
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+            )}
           </div>
 
           {/* Image Counter */}

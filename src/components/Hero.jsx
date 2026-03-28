@@ -3,6 +3,10 @@ import { gsap } from 'gsap'
 import { Play, Pause } from 'lucide-react'
 import { couple, venues, audio } from '../data'
 import { themeConfig } from '../config/themeConfig'
+import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
+
+const HERO_IMAGE_SRC = '/assets/images/prenup/DSC01018.jpg'
 
 const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -20,7 +24,7 @@ const Hero = () => {
 
   const formatDate = () => {
     const { day, year, month } = couple.wedding
-    // Format as MONTH.DD.YYYY (APRIL.07.2026)
+    // Format as MONTH.DD.YYYY (e.g. APRIL.25.2026)
     const monthUpper = month.toUpperCase() // Get month name in uppercase (APRIL)
     const dayFormatted = String(day).padStart(2, '0') // Ensure 2 digits (07)
     return `${monthUpper}.${dayFormatted}.${year}`
@@ -138,15 +142,24 @@ const Hero = () => {
       />
 
       {/* Slight bleed past edges + overflow-hidden hides subpixel gaps vs parent / next section */}
-      <img
-        src="/assets/images/prenup/DSC01018.jpg"
-        alt="Heece and Joshua"
-        className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-[50%_18%] sm:object-[50%_22%] md:object-[50%_25%] lg:object-[50%_27%] xl:object-[50%_28%]"
-        fetchPriority="high"
-        decoding="async"
-      />
+      {shouldUsePrenupPlaceholder(HERO_IMAGE_SRC) ? (
+        <PrenupPlaceholder
+          data-hero-image-slot
+          className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
+          aria-label={PRENUP_PLACEHOLDER_TEXT}
+        />
+      ) : (
+        <img
+          data-hero-image-slot
+          src={HERO_IMAGE_SRC}
+          alt="Benjie and April"
+          className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-[50%_18%] sm:object-[50%_22%] md:object-[50%_25%] lg:object-[50%_27%] xl:object-[50%_28%]"
+          fetchPriority="high"
+          decoding="async"
+        />
+      )}
 
-      {/* Blurred burgundy overlay — pulled past top/left/right so no hairline shows */}
+      {/* Blurred olive overlay — pulled past top/left/right so no hairline shows */}
       <svg
         className="pointer-events-none absolute -top-2 left-1/2 z-10 h-[calc(16rem+16px)] w-[calc(100%+24px)] max-w-none -translate-x-1/2 sm:h-[calc(20rem+16px)] md:h-[calc(24rem+16px)] lg:h-[calc(28rem+20px)]"
         preserveAspectRatio="none"
@@ -158,11 +171,11 @@ const Hero = () => {
             <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
           </filter>
           <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(90, 30, 42, 1)" />
-            <stop offset="12%" stopColor="rgba(90, 30, 42, 0.95)" />
-            <stop offset="40%" stopColor="rgba(90, 30, 42, 0.7)" />
-            <stop offset="70%" stopColor="rgba(90, 30, 42, 0.3)" />
-            <stop offset="100%" stopColor="rgba(90, 30, 42, 0)" />
+            <stop offset="0%" stopColor="rgba(58, 77, 57, 0.92)" />
+            <stop offset="12%" stopColor="rgba(58, 77, 57, 0.82)" />
+            <stop offset="40%" stopColor="rgba(58, 77, 57, 0.45)" />
+            <stop offset="70%" stopColor="rgba(58, 77, 57, 0.18)" />
+            <stop offset="100%" stopColor="rgba(58, 77, 57, 0)" />
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#topGradient)" filter="url(#heroBlurTop)" />
@@ -171,10 +184,10 @@ const Hero = () => {
       {/* Date and venue — top */}
       <div className="absolute top-0 left-0 right-0 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8 z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <p ref={dateRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-foglihten" style={{ color: '#F5F0E8', textShadow: '0 1px 3px rgba(0,0,0,0.45), 0 0 16px rgba(0,0,0,0.2)' }}>
+          <p ref={dateRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-foglihten" style={{ color: '#F4F1EC', textShadow: '0 1px 3px rgba(0,0,0,0.4), 0 0 18px rgba(46,59,47,0.35)' }}>
             {formatDate()}
           </p>
-          <p ref={venueRef} className="text-xs sm:text-sm md:text-base font-albert mt-2 sm:mt-3" style={{ color: '#F5F0E8', textShadow: '0 1px 2px rgba(0,0,0,0.4)' }}>
+          <p ref={venueRef} className="text-xs sm:text-sm md:text-base font-albert mt-2 sm:mt-3" style={{ color: '#F4F1EC', textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
             {venueName}
           </p>
         </div>
@@ -191,11 +204,11 @@ const Hero = () => {
             <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
           </filter>
           <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(90, 30, 42, 0)" />
-            <stop offset="30%" stopColor="rgba(90, 30, 42, 0.3)" />
-            <stop offset="60%" stopColor="rgba(90, 30, 42, 0.7)" />
-            <stop offset="88%" stopColor="rgba(90, 30, 42, 0.95)" />
-            <stop offset="100%" stopColor="rgba(90, 30, 42, 1)" />
+            <stop offset="0%" stopColor="rgba(58, 77, 57, 0)" />
+            <stop offset="30%" stopColor="rgba(58, 77, 57, 0.22)" />
+            <stop offset="60%" stopColor="rgba(58, 77, 57, 0.55)" />
+            <stop offset="88%" stopColor="rgba(58, 77, 57, 0.88)" />
+            <stop offset="100%" stopColor="rgba(46, 59, 47, 0.96)" />
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#heroBlurBottom)" />
@@ -209,9 +222,9 @@ const Hero = () => {
         style={{ pointerEvents: 'auto' }}
       >
         {isPlaying ? (
-          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-burgundy-wine" fill="#5A1E2A" />
+          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-burgundy-wine" fill="#3A4D39" />
         ) : (
-          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-burgundy-wine ml-1" fill="#5A1E2A" />
+          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-burgundy-wine ml-1" fill="#3A4D39" />
         )}
       </button>
 
@@ -220,21 +233,21 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex flex-col items-center justify-center">
             <div>
-              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#F5F0E8', textShadow: '0 1px 3px rgba(0,0,0,0.45), 0 0 20px rgba(0,0,0,0.2)' }}>
+              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#F4F1EC', textShadow: '0 1px 3px rgba(0,0,0,0.4), 0 0 20px rgba(46,59,47,0.35)' }}>
                 {couple.groom.firstName}
               </p>
-              <p ref={groomLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#A68B6E', textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
+              <p ref={groomLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#C2A878', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
                 {couple.groom.lastName}
               </p>
             </div>
-            <p ref={andRef} className="caudex-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase leading-tight my-2 sm:my-3" style={{ color: '#000000' }}>
+            <p ref={andRef} className="caudex-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase leading-tight my-2 sm:my-3" style={{ color: '#C2A878' }}>
               AND
             </p>
             <div>
-              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#F5F0E8', textShadow: '0 1px 3px rgba(0,0,0,0.45), 0 0 20px rgba(0,0,0,0.2)' }}>
+              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#F4F1EC', textShadow: '0 1px 3px rgba(0,0,0,0.4), 0 0 20px rgba(46,59,47,0.35)' }}>
                 {couple.bride.firstName}
               </p>
-              <p ref={brideLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#A68B6E', textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
+              <p ref={brideLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#C2A878', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
                 {couple.bride.lastName}
               </p>
             </div>

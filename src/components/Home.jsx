@@ -48,7 +48,7 @@ const Home = ({ onOpenRSVP }) => {
 
       <FullBleedPhoto
         src="/assets/images/prenup/JGM04266.jpg"
-        alt="Joshua and Heece"
+        alt="Benjie and April"
       />
 
       {/* Content */}
@@ -62,8 +62,8 @@ const Home = ({ onOpenRSVP }) => {
       <FullBleedPhotoSplit
         leftSrc="/assets/images/prenup/JGM04170.jpg"
         rightSrc="/assets/images/prenup/JGM03897.jpg"
-        leftAlt="Joshua and Heece"
-        rightAlt="Joshua and Heece"
+        leftAlt="Benjie and April"
+        rightAlt="Benjie and April"
       />
 
       {/* Entourage Section - between Order of Events and Dress Code */}
@@ -73,8 +73,8 @@ const Home = ({ onOpenRSVP }) => {
         invertLayout
         leftSrc="/assets/images/prenup/prenup5.jpg"
         rightSrc="/assets/images/prenup/JGM04213.jpg"
-        leftAlt="Joshua and Heece"
-        rightAlt="Joshua and Heece"
+        leftAlt="Benjie and April"
+        rightAlt="Benjie and April"
       />
 
       <div className="relative z-20 flex items-center justify-center pt-12">
@@ -85,7 +85,7 @@ const Home = ({ onOpenRSVP }) => {
 
       <FullBleedPhoto
         src="/assets/images/prenup/DSC01046.jpg"
-        alt="Joshua and Heece"
+        alt="Benjie and April"
       />
 
       <div className="relative z-20 flex items-center justify-center">
@@ -97,8 +97,8 @@ const Home = ({ onOpenRSVP }) => {
       <FullBleedPhotoSplit
         leftSrc="/assets/images/prenup/prenup2.jpg"
         rightSrc="/assets/images/prenup/JGM04077.jpg"
-        leftAlt="Joshua and Heece"
-        rightAlt="Joshua and Heece"
+        leftAlt="Benjie and April"
+        rightAlt="Benjie and April"
       />
 
       <div className="relative z-20 flex items-center justify-center">

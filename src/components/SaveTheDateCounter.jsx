@@ -5,6 +5,10 @@ import { getTimeUntilWedding } from '../utils/countdown'
 import { themeConfig } from '../config/themeConfig'
 import { couple } from '../data'
 import './pages/Details.css'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
+
+const SAVE_THE_DATE_BG = '/assets/images/prenup/prenup11.jpg'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -62,17 +66,26 @@ const SaveTheDateCounter = () => {
     return `${month} ${day}, ${year}`
   }
 
+  const bgIsPlaceholder = shouldUsePrenupPlaceholder(SAVE_THE_DATE_BG)
+
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20"
-      style={{
-        backgroundImage: 'url(/assets/images/prenup/prenup11.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 35%',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 overflow-hidden"
+      style={
+        bgIsPlaceholder
+          ? { backgroundColor: '#e8ebe4' }
+          : {
+              backgroundImage: `url(${SAVE_THE_DATE_BG})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 35%',
+              backgroundRepeat: 'no-repeat'
+            }
+      }
     >
+      {bgIsPlaceholder && (
+        <PrenupPlaceholder className="pointer-events-none absolute inset-0 z-0 min-h-full w-full opacity-90" aria-hidden />
+      )}
       <div className="relative z-20 max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-between min-h-[400px] sm:min-h-[500px] md:min-h-[600px] min-[992px]:min-h-[760px]">
         {/* Title */}
         <div className="text-center">
@@ -88,37 +101,37 @@ const SaveTheDateCounter = () => {
         {/* Countdown Timer */}
         <div ref={countdownRef} className="flex justify-center items-center space-x-3 sm:space-x-4 md:space-x-6 px-4">
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#5A1E2A', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#2E3B2F', opacity: 1 }}>
               {countdown.days}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#5A1E2A', opacity: 0.9 }}>Days</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#2E3B2F', opacity: 0.9 }}>Days</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#5A1E2A' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#2E3B2F' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#5A1E2A', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#2E3B2F', opacity: 1 }}>
               {countdown.hours}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#5A1E2A', opacity: 0.9 }}>Hours</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#2E3B2F', opacity: 0.9 }}>Hours</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#5A1E2A' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#2E3B2F' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#5A1E2A', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#2E3B2F', opacity: 1 }}>
               {countdown.minutes}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#5A1E2A', opacity: 0.9 }}>Minutes</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#2E3B2F', opacity: 0.9 }}>Minutes</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#5A1E2A' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#2E3B2F' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#5A1E2A', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#2E3B2F', opacity: 1 }}>
               {countdown.seconds}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#5A1E2A', opacity: 0.9 }}>Seconds</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#2E3B2F', opacity: 0.9 }}>Seconds</div>
           </div>
         </div>
       </div>

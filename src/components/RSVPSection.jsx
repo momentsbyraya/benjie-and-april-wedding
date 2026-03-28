@@ -4,6 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Mail } from 'lucide-react'
 import { couple } from '../data'
 import { themeConfig } from '../config/themeConfig'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
+
+const RSVP_SECTION_BG = '/assets/images/prenup/prenup3.jpg'
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
@@ -68,6 +72,8 @@ const RSVPSection = ({ onOpenRSVP }) => {
     }
   }, [])
 
+  const rsvpBgPlaceholder = shouldUsePrenupPlaceholder(RSVP_SECTION_BG)
+
   return (
     <div
       ref={rsvpSectionRef}
@@ -80,15 +86,22 @@ const RSVPSection = ({ onOpenRSVP }) => {
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(/assets/images/prenup/prenup3.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.8,
-        }}
+        style={
+          rsvpBgPlaceholder
+            ? { backgroundColor: '#dfe5da', opacity: 0.95 }
+            : {
+                backgroundImage: `url(${RSVP_SECTION_BG})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.8,
+              }
+        }
         aria-hidden
       />
+      {rsvpBgPlaceholder && (
+        <PrenupPlaceholder className="pointer-events-none absolute inset-0 z-0 opacity-40" aria-hidden />
+      )}
       <div className="relative z-10 flex items-center justify-center py-16 sm:py-20 md:py-24">
         <div className="bg-white/50 px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-11 lg:px-7 lg:py-10 xl:px-6 xl:py-9 max-w-3xl md:max-w-2xl lg:max-w-xl xl:max-w-lg mx-auto w-full">
       <div className="text-center mb-12 sm:mb-16">
@@ -112,15 +125,15 @@ const RSVPSection = ({ onOpenRSVP }) => {
           <div className="w-full h-px bg-burgundy-tan opacity-40"></div>
         </div>
         <div ref={rsvpContentRef}>
-          <p className="text-sm sm:text-base font-albert font-thin text-burgundy-dark max-w-3xl mx-auto leading-relaxed text-center mb-6">
-                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'April 30, 2026'}</strong>.<br />
+          <p className="text-sm sm:text-base font-albert font-thin text-[#2E3B2F] max-w-3xl mx-auto leading-relaxed text-center mb-6">
+                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'April 17, 2026'}</strong>.<br />
                 After this date, arrangements are final.
           </p>
           {onOpenRSVP && (
             <div className="flex flex-col items-center gap-4">
               <button
                 onClick={onOpenRSVP}
-                className="px-6 py-3 bg-burgundy-dark text-white rounded-full hover:bg-burgundy-wine transition-colors duration-200 font-albert flex items-center gap-2"
+                className="px-6 py-3 bg-burgundy-dark text-[#F4F1EC] rounded-full hover:bg-burgundy-wine transition-colors duration-200 font-albert flex items-center gap-2"
               >
                 Respond
                 <Mail size={18} />

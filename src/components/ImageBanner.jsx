@@ -1,5 +1,7 @@
 import React from 'react'
 import GradientLayer from './GradientLayer'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
 
 const ImageBanner = ({
   src,
@@ -7,14 +9,20 @@ const ImageBanner = ({
   subtitle = 'The',
   title = 'Details'
 }) => {
+  const usePlaceholder = shouldUsePrenupPlaceholder(src)
+
   return (
     <div className="relative z-20 w-screen" style={{ width: '100vw' }}>
       <div className="relative w-full h-[250px] sm:h-[250px] md:h-[300px] lg:h-[350px]">
-          <img 
-            src={src} 
-            alt={alt} 
-            className="w-full h-full object-cover"
-          />
+          {usePlaceholder ? (
+            <PrenupPlaceholder className="h-full w-full" />
+          ) : (
+            <img 
+              src={src} 
+              alt={alt} 
+              className="w-full h-full object-cover"
+            />
+          )}
           {/* Soft transparent white gradient layers at bottom */}
           <GradientLayer height="h-32" opacity={0.7} gradientId="whiteGradient1" />
           <GradientLayer height="h-24" opacity={0.5} gradientId="whiteGradient2" />
@@ -44,11 +52,11 @@ const ImageBanner = ({
           <div className="absolute bottom-0 left-0 w-full flex flex-col justify-center items-center pb-0.5 z-10">
             <div className="w-full text-center">
               {/* The in Ballet font */}
-              <h1 className="font-ballet text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-2" style={{ color: '#5A1E2A' }}>
+              <h1 className="font-ballet text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-2" style={{ color: '#2E3B2F' }}>
                 {subtitle}
               </h1>
               <h2 className="font-tebranos text-6xl sm:text-7xl md:text-8xl lg:text-9xl uppercase mb-4 -mt-6" style={{ 
-                color: '#5A1E2A'
+                color: '#2E3B2F'
               }}>
                 {title}
               </h2>

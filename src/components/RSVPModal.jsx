@@ -3,6 +3,10 @@ import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { X } from 'lucide-react'
 import { couple } from '../data'
+import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
+
+const RSVP_MODAL_BG = '/assets/images/prenup/JGM04077.jpg'
 
 const RSVP_FORM_EMBED_URL =
   couple.rsvpGoogleFormEmbedUrl ||
@@ -64,6 +68,8 @@ const RSVPModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null
 
+  const modalBgPlaceholder = shouldUsePrenupPlaceholder(RSVP_MODAL_BG)
+
   return createPortal(
     <div
       ref={modalRef}
@@ -76,14 +82,18 @@ const RSVPModal = ({ isOpen, onClose }) => {
         onClick={handleOverlayClick}
         aria-hidden
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center pointer-events-none"
-          style={{
-            backgroundImage: 'url(/assets/images/prenup/JGM04077.jpg)',
-            filter: 'blur(14px)',
-            transform: 'scale(1.12)',
-          }}
-        />
+        {modalBgPlaceholder ? (
+          <PrenupPlaceholder className="absolute inset-0 h-full w-full scale-105 opacity-70" aria-hidden />
+        ) : (
+          <div
+            className="absolute inset-0 bg-cover bg-center pointer-events-none"
+            style={{
+              backgroundImage: `url(${RSVP_MODAL_BG})`,
+              filter: 'blur(14px)',
+              transform: 'scale(1.12)',
+            }}
+          />
+        )}
         <div className="absolute inset-0 bg-black/35 pointer-events-none" />
       </div>
 
@@ -108,7 +118,7 @@ const RSVPModal = ({ isOpen, onClose }) => {
 
         <div className="flex-1 min-h-0 flex flex-col bg-white/95 backdrop-blur-sm">
           <iframe
-            title="RSVP — Joshua and Heece"
+            title="RSVP — Benjie and April"
             src={RSVP_FORM_EMBED_URL}
             className="w-full flex-1 min-h-0 border-0 rsvp-modal-content"
             allow="fullscreen"

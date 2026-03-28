@@ -18,16 +18,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E8F0E8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5A1E2A;
+  background: #3A4D39;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C08A8F;
+  background: #739072;
 }
 
 /* RSVP Modal scrollbar - dark sage green */
@@ -36,16 +36,16 @@
 }
 
 .rsvp-modal-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E8F0E8;
 }
 
 .rsvp-modal-content::-webkit-scrollbar-thumb {
-  background: #5A1E2A;
+  background: #3A4D39;
   border-radius: 4px;
 }
 
 .rsvp-modal-content::-webkit-scrollbar-thumb:hover {
-  background: #C08A8F;
+  background: #739072;
 }
 
 /* Print styles */
@@ -63,10 +63,10 @@
 :root {
   --envelope-x: 300px;
   --envelope-y: 200px;
-  --envelope-bg: #5A1E2A;
-  --envelope-shadow: #3A5563;
-  --heart-bg: darkred;
-  --heart-text: white;
+  --envelope-bg: #3A4D39;
+  --envelope-shadow: #2E3B2F;
+  --heart-bg: #C2A878;
+  --heart-text: #F4F1EC;
   --letter-font: "Dancing Script", serif;
   --letter-x: 250px;
   --letter-y: calc(250px - 1rem - 10px);

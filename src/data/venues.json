@@ -1,27 +1,29 @@
 {
+  "useImagePlaceholder": true,
+  "carouselPhotos": [],
   "ceremony": {
     "ceremonyPhoto": "/assets/images/venues/ceremony.jpg",
-    "name": "San Antonio De Padua Church",
+    "name": "Municipal Evacuation Center",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "2:00 PM",
-    "details": "Schedule: 2:00 PM",
-    "googleMapsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7",
-    "directionsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7"
+    "time": "2–4 PM",
+    "details": "Ceremony 2–4 PM",
+    "googleMapsUrl": "https://maps.app.goo.gl/L9yYZeAmECooPQmH7",
+    "directionsUrl": "https://maps.app.goo.gl/L9yYZeAmECooPQmH7"
   },
   "reception": {
     "receptionPhoto": "/assets/images/venues/reception.png",
-    "name": "Purok Mondalo Barangay Unidad Training Center, Cagwait Surigao del Sur",
+    "name": "Municipal Evacuation Center",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "5:00 PM",
-    "details": "Schedule: 5:00 PM onwards",
+    "time": "6–9 PM",
+    "details": "Reception 6–9 PM",
     "landmark": "Same venue as ceremony",
-    "googleMapsUrl": "https://maps.app.goo.gl/FVmFZ5cE1wSyvj237",
-    "directionsUrl": "https://maps.app.goo.gl/FVmFZ5cE1wSyvj237"
+    "googleMapsUrl": "https://maps.app.goo.gl/L9yYZeAmECooPQmH7",
+    "directionsUrl": "https://maps.app.goo.gl/L9yYZeAmECooPQmH7"
   }
 }

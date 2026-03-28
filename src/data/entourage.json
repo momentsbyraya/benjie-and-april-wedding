@@ -1,120 +1,120 @@
 {
   "couple": {
-    "groom": { "name": "JOSHUA LACERNA ANDRES" },
-    "bride": { "name": "HEECE CABADONGA MOLINA" }
+    "groom": { "name": "BENJIE LOU C. AZARCON" },
+    "bride": { "name": "APRIL JANE DUBLAS" }
   },
   "parents": {
     "groom": {
-      "father": "Mr. Lando B. Macheca",
-      "mother": "Mrs. Cristita L. Macheca"
+      "father": "Benjamin L. Azarcon",
+      "mother": "Luzviminda C. Azarcon"
     },
     "bride": {
-      "father": "",
-      "mother": "Nelly C. Molina"
+      "father": "Aldrin D. Cantutay",
+      "mother": "Arcelyn D. Cantutay"
     }
   },
   "entourageList": [
     {
       "category": "Principal Sponsors",
       "ninong": [
-        "Mr. Allan B. Mondalo",
-        "Mr. Crisente F. Bernales",
-        "Mr. Francisco Duque dela Casa",
-        "Mr. Erlindo L. Sala",
-        "Mr. Lito B. Macheca",
-        "Mr. Ronie Breviescas",
-        "Mr. Vironico Macheca",
-        "Mr. Rogelio M. Nozares Sr.",
-        "Mr. Rogelio Santa",
-        "Mr. Elibert T. Momo",
-        "Mr. Eddie Logronio",
-        "Mr. Lolito L. Pelaez",
-        "Mr. Jerry Pepino",
-        "Mr. Fernando Liparanon"
+        "Ricky L. Azarcon",
+        "Kap. Joenard A. Gabrillo",
+        "Solomon T. Rufila",
+        "Kag. Lucilo A. Caagay",
+        "Loreto G. Bering",
+        "Kag. Det Harish M. Ratag",
+        "Kag. Gervacio Polinio Jr.",
+        "Melvin Symlet Y. Tiu",
+        "Casiano Ibasco Jr.",
+        "Henry P. Palomata",
+        "Florencio A. Mamhot",
+        "Arnold Manuel Agujetas",
+        "Roger D. Cantutay",
+        "Mario A. Mesterio"
       ],
       "ninang": [
-        "Ms. Anji Prado",
-        "Mrs. Chona Eunice S. Jarina",
-        "Mrs. Irene Sala-Brucheseifer",
-        "Mrs. Julieta Tolentino",
-        "Mrs. Vicheryl D. Tamagos",
-        "Mrs. Ma. Rizalyn Sala-Jung",
-        "Mrs. Francisca Lagrama",
-        "Ms. Joecilyn L. Sala",
-        "Mrs. Joelyn T. Galgo",
-        "Mrs. Lelibeth C. Sala",
-        "Mrs. Juanita Baito",
-        "Mrs. Myrna U. Evilla",
-        "Mrs. Arlene S. Estrada",
-        "Mrs. Rowena S. Sanchez",
-        "Mrs. Elineta Tolentino"
+        "Aurora Naive G. Azarcon",
+        "Leoniza C. Cebuala",
+        "Kap. Blandina L. Rufila",
+        "Catherine G. Oclarit, CPA",
+        "Natividad Z. Bering",
+        "Meralyn N. Ortuyo",
+        "Tita A. Prado",
+        "Pevie D. Tiu",
+        "Imelda D. Mandin",
+        "Karen E. Pearson",
+        "Librada J. Calundre",
+        "Milagros Q. Montoya",
+        "Alicia G. Quilla",
+        "Marivic G. Mesterio",
+        "Lilibeth R. Lozada",
+        "Raquel R. Perez",
+        "Virgie M. Llanto",
+        "Snooky M. Pineda"
       ]
     },
     {
       "category": "Bestman",
-      "names": ["Mr. Christian Denzo P. Lacerna"]
+      "names": ["Jaypee S. Monton"]
     },
     {
       "category": "Maid of Honor",
-      "names": ["Ms. Diocel A. Alvizo"]
+      "names": ["Glema Mae S. Duropan"]
     },
     {
       "category": "Candle Sponsors",
-      "names": ["Mr. Joevanny Gabenite", "Mrs. Merlinda V. Sala"]
+      "names": [
+        "Mr. Joel A. Nilo",
+        "Mrs. Merissa D. Nilo"
+      ]
     },
     {
       "category": "Cord Sponsors",
-      "names": ["Mr. Jay-ar Macheca", "Ms. Ivy Michelle S. Mantilla"]
+      "names": [
+        "Mr. Ronaldo D. Grande",
+        "Mrs. Mary Grace D. Grande"
+      ]
     },
     {
       "category": "Veil Sponsors",
-      "names": ["Mr. Dave S. Mantilla", "Mrs. Karylle S. Acevedo"]
+      "names": [
+        "Mr. Elden R. Abrenica",
+        "Mrs. Ladyjoy C. Abrenica"
+      ]
     },
     {
       "category": "Secondary Sponsors",
       "groomsmen": [
-        "Mr. Kiven Sala",
-        "Mr. Hero Macheca",
-        "Mr. Christopher Sala",
-        "Aries Deliger",
-        "Ethan Bobieles",
-        "Fritz Ivan Miguel",
-        "Jade Cabadonga",
-        "Joseff Gertrude C. Macheca"
+        "Charlz Jan C. Cebuala",
+        "Josh Lenard C. Cebuala",
+        "Venz C. Dacillo",
+        "Anthony Lloyd C. Cantutay"
       ],
       "bridesmaid": [
-        "Ms. Samantha G. Paynandos",
-        "Ms. Angel Queen Pingkay",
-        "Ms. Vilmalyn M. Sanchez",
-        "Ms. Jane Mary Macheca",
-        "Miss Calexta Tiffany Barriga",
-        "Miss Ryza L. Macheca",
-        "Miss Dianne L. Macheca",
-        "Miss Xiannah Mae Mantilla"
+        "Aleza Mae C. Montoya",
+        "Angelique Grace D. Cantutay",
+        "Antonette Marie D. Cantutay",
+        "Althea Rose D. Cantutay"
       ]
     },
     {
       "category": "Ring Bearer",
-      "names": ["Sulaiman Molina"]
+      "names": ["Zionne Matthew D. Azarcon"]
     },
     {
       "category": "Bible Bearer",
-      "names": ["Joecary Jr. Gabenite"]
+      "names": ["Matt Clifford D. Azarcon"]
     },
     {
       "category": "Coin Bearer",
-      "names": ["Kerzon Mantilla"]
+      "names": ["Zach Aaron D. Azarcon"]
     },
     {
       "category": "Flower Boys",
-      "names": ["Jhan Flore Noel M. Villarina"]
-    },
-    {
-      "category": "Flower Girls",
       "names": [
-        "Andrea M. De Jesus",
-        "Kimberly L. Macheca",
-        "Kathaleeyah Blaire L. Subricaray"
+        "Richard Q. Montoya",
+        "Leodel A. Mascariñas",
+        "John Philip Dublas"
       ]
     }
   ]

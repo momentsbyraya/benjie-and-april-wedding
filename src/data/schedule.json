@@ -2,9 +2,9 @@
   "events": [
     {
       "time": "1:30 PM",
-      "description": "Guest gathering",
+      "description": "Guest Gathering",
       "image": "/assets/images/graphics/welcome-2.png",
-      "imageAlt": "Guest gathering",
+      "imageAlt": "Guest Gathering",
       "position": "left"
     },
     {
@@ -15,17 +15,17 @@
       "position": "right"
     },
     {
-      "time": "5:00 PM",
+      "time": "6:00 PM",
       "description": "Reception Dinner",
       "image": "/assets/images/graphics/dinner-2.png",
       "imageAlt": "Reception Dinner",
       "position": "left"
     },
     {
-      "time": "10:00 PM",
-      "description": "Evening Ends",
+      "time": "9:00 PM",
+      "description": "Ends",
       "image": "/assets/images/graphics/cake-2.png",
-      "imageAlt": "Evening Ends",
+      "imageAlt": "Ends",
       "position": "right"
     }
   ]

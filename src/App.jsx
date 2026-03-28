@@ -1,38 +1,49 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import RSVPModal from './components/RSVPModal'
 import DynamicTitle from './components/DynamicTitle'
-// import OpeningScreen from './components/OpeningScreen'
+import OpeningScreen from './components/OpeningScreen'
 import Loader from './components/Loader'
 import ScrollToTop from './components/ScrollToTop'
 import Details from './components/pages/Details'
 import Entourage from './components/pages/Entourage'
 import Moments from './components/pages/Moments'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
+import { SHOW_PRENUP_IMAGES } from './config/prenupPlaceholder'
 
 function AppContent() {
   const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false)
-  const [showInvitation, setShowInvitation] = useState(false) // Set to false to show opening screen
+  const [showInvitation, setShowInvitation] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const { play } = useAudio()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  /** Opening envelope only on home so deep links (/details, etc.) still work */
+  const showOpeningEnvelope =
+    !isLoading &&
+    !showInvitation &&
+    (location.pathname === '/' || location.pathname === '')
 
   // Preload critical images and resources
   useEffect(() => {
-    const preloadImages = async () => {
+      const preloadImages = async () => {
+      const prenupCritical = SHOW_PRENUP_IMAGES
+        ? [
+            '/assets/images/prenup/DSC01018.jpg',
+            '/assets/images/prenup/Proposal 5.jpg',
+            '/assets/images/prenup/Proposal 1.jpg',
+            '/assets/images/prenup/Proposal 2.jpg',
+            '/assets/images/prenup/Proposal 4.jpg',
+            '/assets/images/prenup/prenup11.jpg',
+          ]
+        : []
+
       const criticalImages = [
-        // Hero image - most important
-        '/assets/images/prenup/DSC01018.jpg',  // Hero image
-        // NavIndex images - all prenup photos used on home page
-        '/assets/images/prenup/Proposal 5.jpg',  // Polaroid image
-        '/assets/images/prenup/Proposal 1.jpg',  // RSVP container
-        '/assets/images/prenup/Proposal 2.jpg',  // Moments polaroid 1
-        '/assets/images/prenup/Proposal 4.jpg',  // Moments polaroid 2
-        '/assets/images/prenup/prenup11.jpg',   // Save The Date countdown background
-        // NavIndex graphics - all decorative elements
+        ...prenupCritical,
         '/assets/images/graphics/dusty-blue.png',
         '/assets/images/graphics/flower-1.png',
         '/assets/images/graphics/flower-3.png',
@@ -114,8 +125,9 @@ function AppContent() {
             // Check if we're on the home page
             if (window.location.pathname === '/' || window.location.pathname === '') {
               // Look for hero image
-              const heroImg = document.querySelector('img[src="/assets/images/prenup/DSC01018.jpg"]')
-              if (heroImg) {
+              const heroSlot = document.querySelector('[data-hero-image-slot]')
+              if (heroSlot && heroSlot.tagName === 'IMG') {
+                const heroImg = heroSlot
                 // Check if image is loaded and visible
                 if (heroImg.complete && heroImg.naturalHeight > 0) {
                   // Use Intersection Observer to check if hero is visible
@@ -144,7 +156,7 @@ function AppContent() {
                   setTimeout(() => resolve(), 2000) // Fallback timeout
                 }
               } else {
-                // Hero image not found, resolve anyway
+                // Hero placeholder (no photo) or image not in DOM yet
                 resolve()
               }
             } else {
@@ -189,11 +201,10 @@ function AppContent() {
           <Loader />
         </div>
       )}
-      {/* OpeningScreen - shows after loading, before invitation */}
-      {/* {!isLoading && !showInvitation && (
+      {showOpeningEnvelope && (
         <OpeningScreen onEnvelopeOpen={handleEnvelopeOpen} />
-      )} */}
-      {/* Main content - shows after invitation is opened (stamp clicked) */}
+      )}
+      {/* Main content — mounted after loader; envelope overlays home until opened */}
       {!isLoading && (
         <>
           <Routes>

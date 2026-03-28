@@ -1,5 +1,5 @@
-// Theme Configuration - Burgundy Red Wine palette
-// Primary: #5A1E2A Deep Burgundy | Background: #F3E8E2 Champagne Beige | Secondary: #C08A8F Dusty Rose
+// Theme configuration — elegant olive / sage palette (burgundy-* class names preserved)
+// Primary dark #3A4D39 | Olive main #4F6F52 | Soft #739072 | Sage bg #E8F0E8 | Cream #F4F1EC | Gold #C2A878 | Borders #A3B18A
 export const themeConfig = {
     // Background Colors
     backgrounds: {
@@ -7,44 +7,45 @@ export const themeConfig = {
         secondary: 'bg-burgundy-wine',
         accent: 'bg-burgundy-wine',
         light: 'bg-white/50',
-        theme: 'bg-burgundy-cream',      // Champagne Beige
+        theme: 'bg-burgundy-cream',
         garden: 'bg-burgundy-cream',
         crumpledPaper: 'bg-[url("/assets/images/crumpled-paper.png")] bg-cover bg-center bg-no-repeat',
     },
 
-    // Text Colors
+    // Text Colors — on light surfaces use dark olive; muted secondary #5F7A61
     text: {
-        primary: 'text-burgundy-dark',
-        secondary: 'text-burgundy-tan',    // Dusty Rose
+        primary: 'text-[#2E3B2F]',
+        secondary: 'text-[#5F7A61]',
         accent: 'text-burgundy-wine',
-        muted: 'text-burgundy-tan/80',
-        dark: 'text-burgundy-dark',
+        muted: 'text-[#5F7A61]/80',
+        dark: 'text-[#2E3B2F]',
         theme: 'text-burgundy-wine',
-        pause: 'text-[#F3E8E2]',
-        custom: 'text-burgundy-dark',
-        light: '#C08A8F',
-        lightBlack: '#5A1E2A',
-        cream: '#F3E8E2',
-        tan: '#C08A8F',
-        wine: '#5A1E2A',
-        burgundyDark: '#5A1E2A',
-        burntOrange: '#5A1E2A',
+        pause: 'text-[#F4F1EC]',
+        custom: 'text-[#2E3B2F]',
+        light: '#739072',
+        lightBlack: '#2E3B2F',
+        cream: '#F4F1EC',
+        tan: '#739072',
+        wine: '#4F6F52',
+        burgundyDark: '#3A4D39',
+        burntOrange: '#C2A878',
+        sageGreen: '#4F6F52',
     },
 
-    // Border Colors
+    // Border Colors — soft olive #A3B18A
     borders: {
-        primary: 'border-burgundy-wine',
-        secondary: 'border-burgundy-tan',
+        primary: 'border-[#A3B18A]',
+        secondary: 'border-[#A3B18A]',
         accent: 'border-burgundy-wine',
-        theme: 'border-burgundy-tan',
-        garden: 'border-burgundy-tan',
+        theme: 'border-[#A3B18A]',
+        garden: 'border-[#A3B18A]',
     },
 
     // Button Colors
     buttons: {
         primary: 'bg-burgundy-wine hover:bg-burgundy-tan',
-        secondary: 'border border-burgundy-tan hover:border-burgundy-wine',
-        text: 'text-burgundy-cream hover:text-white',
+        secondary: 'border border-[#A3B18A] hover:border-burgundy-wine',
+        text: 'text-[#F4F1EC] hover:text-white',
         theme: 'bg-burgundy-wine hover:bg-burgundy-wine/90',
         garden: 'bg-burgundy-tan hover:bg-burgundy-wine',
     },
@@ -52,7 +53,7 @@ export const themeConfig = {
     // Hover Effects
     hover: {
         primary: 'hover:bg-burgundy-tan',
-        secondary: 'hover:border-burgundy-wine hover:text-burgundy-cream',
+        secondary: 'hover:border-burgundy-wine hover:text-[#F4F1EC]',
         theme: 'hover:bg-burgundy-wine/90',
         garden: 'hover:bg-burgundy-wine',
     },
@@ -66,12 +67,12 @@ export const themeConfig = {
 
     // Calendar Configuration
     calendar: {
-        weddingDate: '2026-05-08',
+        weddingDate: '2026-04-25',
         highlightColor: 'bg-burgundy-wine',
-        heartColor: 'text-burgundy-wine',
-        textColor: 'text-burgundy-dark',
+        heartColor: 'text-[#C2A878]',
+        textColor: 'text-[#2E3B2F]',
         headerColor: 'text-burgundy-wine',
-        dayNamesColor: 'text-burgundy-tan',
+        dayNamesColor: 'text-[#5F7A61]',
         background: 'bg-burgundy-cream',
     },
 
@@ -81,23 +82,23 @@ export const themeConfig = {
         garden: 'bg-burgundy-cream',
     },
 
-    // Custom CSS Variables
+    // Custom CSS Variables (consumed by NavIndex.css and similar)
     cssVariables: {
-        '--primary-bg': '#5A1E2A',
-        '--secondary-bg': '#5A1E2A',
-        '--accent-bg': '#5A1E2A',
-        '--accent-hover': '#C08A8F',
-        '--primary-text': '#5A1E2A',
-        '--secondary-text': '#C08A8F',
-        '--accent-text': '#5A1E2A',
-        '--muted-text': '#C08A8F',
-        '--border-color': '#5A1E2A',
-        '--custom-theme': '#5A1E2A',
-        '--cream': '#F3E8E2',
-        '--tan': '#C08A8F',
-        '--wine': '#5A1E2A',
-        '--burgundy-dark': '#5A1E2A',
-        '--garden-bg': '#F3E8E2',
+        '--primary-bg': '#3A4D39',
+        '--secondary-bg': '#4F6F52',
+        '--accent-bg': '#3A4D39',
+        '--accent-hover': '#C2A878',
+        '--primary-text': '#2E3B2F',
+        '--secondary-text': '#5F7A61',
+        '--accent-text': '#3A4D39',
+        '--muted-text': '#5F7A61',
+        '--border-color': '#A3B18A',
+        '--custom-theme': '#4F6F52',
+        '--cream': '#E8F0E8',
+        '--tan': '#739072',
+        '--wine': '#4F6F52',
+        '--burgundy-dark': '#3A4D39',
+        '--garden-bg': '#E8F0E8',
     }
 }
 
@@ -110,9 +111,9 @@ export const themePresets = {
             accent: 'bg-burgundy-wine',
         },
         text: {
-            primary: 'text-burgundy-cream',
-            secondary: 'text-burgundy-tan',
-            accent: 'text-burgundy-wine',
+            primary: 'text-[#F4F1EC]',
+            secondary: 'text-[#5F7A61]',
+            accent: 'text-[#C2A878]',
         }
     },
 
@@ -123,7 +124,7 @@ export const themePresets = {
             accent: 'bg-burgundy-wine',
         },
         text: {
-            primary: 'text-burgundy-dark',
+            primary: 'text-[#2E3B2F]',
             secondary: 'text-burgundy-wine',
             accent: 'text-burgundy-wine',
         }
@@ -136,7 +137,7 @@ export const themePresets = {
             accent: 'bg-burgundy-wine',
         },
         text: {
-            primary: 'text-burgundy-dark',
+            primary: 'text-[#2E3B2F]',
             secondary: 'text-burgundy-wine',
             accent: 'text-burgundy-wine',
         }
@@ -150,10 +151,10 @@ export const themePresets = {
             theme: 'bg-burgundy-cream',
         },
         text: {
-            primary: 'text-burgundy-dark',
+            primary: 'text-[#2E3B2F]',
             secondary: 'text-burgundy-wine',
             accent: 'text-burgundy-wine',
-            garden: 'text-burgundy-tan',
+            garden: 'text-[#5F7A61]',
         }
     }
 }

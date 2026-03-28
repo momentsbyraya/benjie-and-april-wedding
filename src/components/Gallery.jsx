@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createPortal } from 'react-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import './pages/Details.css'
+import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../config/prenupPlaceholder'
+import PrenupPlaceholder from './PrenupPlaceholder'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,7 +36,6 @@ const Gallery = () => {
     '/assets/images/prenup/prenup9.jpg',
     '/assets/images/prenup/prenup10.jpg',
     '/assets/images/prenup/prenup12.jpg',
-    '/assets/images/prenup/JGM04077.jpg',
   ]
 
   const gridColumnPattern = [
@@ -54,7 +55,6 @@ const Gallery = () => {
   const thumbObjectPosition = (src) => {
     if (src.includes('prenup1.jpg')) return 'center top'
     if (src.includes('JGM04241.jpg')) return 'center 38%'
-    if (src.includes('JGM04077.jpg')) return 'center 45%'
     return 'center center'
   }
 
@@ -223,18 +223,22 @@ const Gallery = () => {
                 }}
                 onClick={() => handleImageClick(index)}
               >
-                <img
-                  src={image}
-                  alt={`Gallery ${index + 1}`}
-                  className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${responsiveObjectClass}`}
-                  style={{
-                    height: '100%',
-                    willChange: 'transform',
-                    backfaceVisibility: 'hidden',
-                    ...(skipInlineObjectPosition ? {} : { objectPosition: thumbObjectPosition(image) }),
-                  }}
-                  loading="lazy"
-                />
+                {shouldUsePrenupPlaceholder(image) ? (
+                  <PrenupPlaceholder className="h-full w-full min-h-[120px]" />
+                ) : (
+                  <img
+                    src={image}
+                    alt={`Gallery ${index + 1}`}
+                    className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${responsiveObjectClass}`}
+                    style={{
+                      height: '100%',
+                      willChange: 'transform',
+                      backfaceVisibility: 'hidden',
+                      ...(skipInlineObjectPosition ? {} : { objectPosition: thumbObjectPosition(image) }),
+                    }}
+                    loading="lazy"
+                  />
+                )}
               </div>
             )
           })}
@@ -295,11 +299,19 @@ const Gallery = () => {
               className="relative z-10 max-w-[90vw] max-h-[90vh] flex items-center justify-center"
               style={{ pointerEvents: 'none' }}
             >
-              <img
-                src={galleryImages[currentImageIndex]}
-                alt={`Gallery image ${currentImageIndex + 1}`}
-                className="max-w-full max-h-[90vh] object-contain"
-              />
+              {shouldUsePrenupPlaceholder(galleryImages[currentImageIndex]) ? (
+                <div className="max-w-full max-h-[90vh] flex items-center justify-center px-8">
+                  <p className="text-white font-albert text-lg sm:text-2xl tracking-[0.2em] uppercase text-center">
+                    {PRENUP_PLACEHOLDER_TEXT}
+                  </p>
+                </div>
+              ) : (
+                <img
+                  src={galleryImages[currentImageIndex]}
+                  alt={`Gallery image ${currentImageIndex + 1}`}
+                  className="max-w-full max-h-[90vh] object-contain"
+                />
+              )}
             </div>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm">

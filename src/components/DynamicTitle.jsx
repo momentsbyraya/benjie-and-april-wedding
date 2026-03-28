@@ -1,9 +1,17 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { couple } from '../data'
+import {
+  SHOW_PRENUP_IMAGES,
+  NON_PRENUP_SHARE_IMAGE,
+} from '../config/prenupPlaceholder'
 
-const OG_IMAGE_PATH = '/assets/images/prenup/JGM04213.jpg'
-const FAVICON_PATH = '/assets/images/prenup/DSC01018.jpg'
+const OG_IMAGE_PATH = SHOW_PRENUP_IMAGES
+  ? '/assets/images/prenup/JGM04213.jpg'
+  : NON_PRENUP_SHARE_IMAGE
+const FAVICON_PATH = SHOW_PRENUP_IMAGES
+  ? '/assets/images/prenup/DSC01018.jpg'
+  : NON_PRENUP_SHARE_IMAGE
 
 const DynamicTitle = () => {
   const weddingDate = new Date(couple.wedding.date).toLocaleDateString('en-US', {
@@ -23,7 +31,7 @@ const DynamicTitle = () => {
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="icon" type="image/jpeg" href={FAVICON_PATH} />
+      <link rel="icon" type={SHOW_PRENUP_IMAGES ? 'image/jpeg' : 'image/png'} href={FAVICON_PATH} />
       <link rel="apple-touch-icon" href={FAVICON_PATH} />
 
       <meta property="og:type" content="website" />
@@ -32,7 +40,7 @@ const DynamicTitle = () => {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImageAbsolute} />
       <meta property="og:image:secure_url" content={ogImageAbsolute} />
-      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:type" content={SHOW_PRENUP_IMAGES ? 'image/jpeg' : 'image/png'} />
       <meta property="og:image:alt" content={`${couple.bride.firstName} and ${couple.groom.firstName}`} />
       <meta property="og:locale" content="en_US" />
 

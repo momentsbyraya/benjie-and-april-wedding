@@ -207,7 +207,7 @@ const EntourageDetailsSection = () => {
     return () => ScrollTrigger.getAll().forEach(t => t.kill())
   }, [])
 
-  const accentColor = themeConfig.text.burgundyDark || '#5A1E2A'
+  const accentColor = themeConfig.text.burgundyDark || '#3A4D39'
 
   return (
     <section
@@ -234,14 +234,20 @@ const EntourageDetailsSection = () => {
         </div>
 
         {/* Parents */}
-        <div ref={parentsRef} className="mb-6 flex flex-row gap-4 sm:gap-6 justify-center items-center">
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Parents of the Groom</p>
+        <div ref={parentsRef} className="mb-6 flex flex-row gap-4 sm:gap-6 justify-center items-start">
+          <div className="flex-1 min-w-0 flex flex-col">
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase leading-snug min-h-[2.5em] sm:min-h-[2.75em]" style={{ color: accentColor }}>
+              <span className="block">Parents of the</span>
+              <span className="block">Groom</span>
+            </p>
             <p className="text-[9px] sm:text-[13px] md:text-[15px] font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.father}</p>
             <p className="text-[9px] sm:text-[13px] md:text-[15px] font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.mother}</p>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Parents of the Bride</p>
+          <div className="flex-1 min-w-0 flex flex-col">
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase leading-snug min-h-[2.5em] sm:min-h-[2.75em]" style={{ color: accentColor }}>
+              <span className="block">Parents of the</span>
+              <span className="block">Bride</span>
+            </p>
             <p className="text-[9px] sm:text-[13px] md:text-[15px] font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.father}</p>
             <p className="text-[9px] sm:text-[13px] md:text-[15px] font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.mother}</p>
           </div>
@@ -250,7 +256,7 @@ const EntourageDetailsSection = () => {
         {/* Principal Sponsors */}
         {principalSponsors && (
           <div ref={principalSponsorsRef} className="mb-6">
-            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Principal sponsors</h3>
+            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Principal Sponsors</h3>
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center">
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>NINONG</p>
@@ -275,7 +281,7 @@ const EntourageDetailsSection = () => {
         {/* Secondary Sponsors */}
         {secondarySponsors && (
           <div ref={secondarySponsorsRef} className="mb-6">
-            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Secondary sponsors</h3>
+            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Secondary Sponsors</h3>
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center mb-4">
               {bestman && (
                 <div ref={bestmanRef} className="flex-1 min-w-0">
@@ -345,7 +351,7 @@ const EntourageDetailsSection = () => {
               )}
               {flowerBoys && (
                 <div ref={flowerBoysRef}>
-                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-center uppercase" style={{ color: accentColor }}>Flower Boy</p>
+                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-center uppercase" style={{ color: accentColor }}>Flower Boys</p>
                   {flowerBoys.names?.map((name, index) => (
                     <p key={index} className="text-[9px] sm:text-[13px] md:text-[15px] font-poppins uppercase text-burgundy-dark text-center">{name}</p>
                   ))}

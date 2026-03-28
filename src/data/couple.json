@@ -1,28 +1,28 @@
 {
   "bride": {
-    "firstName": "Heece",
-    "lastName": "Molina",
-    "fullName": "HEECE CABADONGA MOLINA"
+    "firstName": "April Jane",
+    "lastName": "Dublas",
+    "fullName": "APRIL JANE DUBLAS"
   },
   "groom": {
-    "firstName": "Joshua",
-    "lastName": "Andres",
-    "fullName": "JOSHUA LACERNA ANDRES"
+    "firstName": "Benjie Lou",
+    "lastName": "C. Azarcon",
+    "fullName": "BENJIE LOU C. AZARCON"
   },
-  "together": "Heece & Joshua",
-  "nickname": "Heece and Joshua",
+  "together": "Benjie & April",
+  "nickname": "Benjie and April",
   "wedding": {
-    "date": "2026-05-08",
+    "date": "2026-04-25",
     "time": "2:00 PM",
-    "dayOfWeek": "Friday",
-    "month": "May",
-    "day": "8",
+    "dayOfWeek": "Saturday",
+    "month": "April",
+    "day": "25",
     "year": "2026"
   },
   "rsvpDeadline": {
-    "date": "2026-04-30",
+    "date": "2026-04-17",
     "month": "April",
-    "day": "30",
+    "day": "17",
     "year": "2026"
   },
   "rsvpFormUrl": "https://forms.gle/r5yro9sA28BtmXAT9",
