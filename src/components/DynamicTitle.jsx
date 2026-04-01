@@ -5,12 +5,13 @@ import {
   SHOW_PRENUP_IMAGES,
   NON_PRENUP_SHARE_IMAGE,
 } from '../config/prenupPlaceholder'
+import { prenupUrl, PRENUP_OG_FILE, PRENUP_HERO_FILE } from '../config/prenupPhotos'
 
 const OG_IMAGE_PATH = SHOW_PRENUP_IMAGES
-  ? '/assets/images/prenup/JGM04213.jpg'
+  ? prenupUrl(PRENUP_OG_FILE)
   : NON_PRENUP_SHARE_IMAGE
 const FAVICON_PATH = SHOW_PRENUP_IMAGES
-  ? '/assets/images/prenup/DSC01018.jpg'
+  ? prenupUrl(PRENUP_HERO_FILE)
   : NON_PRENUP_SHARE_IMAGE
 
 const DynamicTitle = () => {

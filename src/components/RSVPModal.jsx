@@ -3,9 +3,10 @@ import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { X } from 'lucide-react'
 import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import { prenupUrl, PRENUP_RSVP_MODAL_FILE } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
-const RSVP_MODAL_BG = '/assets/images/prenup/JGM04077.jpg'
+const RSVP_MODAL_BG = prenupUrl(PRENUP_RSVP_MODAL_FILE)
 
 const RSVPModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null)
@@ -81,9 +82,10 @@ const RSVPModal = ({ isOpen, onClose }) => {
           <PrenupPlaceholder className="absolute inset-0 h-full w-full scale-105 opacity-70" aria-hidden />
         ) : (
           <div
-            className="absolute inset-0 bg-cover bg-center pointer-events-none"
+            className="absolute inset-0 bg-cover pointer-events-none"
             style={{
               backgroundImage: `url(${RSVP_MODAL_BG})`,
+              backgroundPosition: 'center 32%',
               filter: 'blur(14px)',
               transform: 'scale(1.12)',
             }}

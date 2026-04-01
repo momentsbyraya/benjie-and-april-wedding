@@ -5,9 +5,10 @@ import { Mail } from 'lucide-react'
 import { couple } from '../data'
 import { themeConfig } from '../config/themeConfig'
 import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import { prenupUrl, PRENUP_RSVP_SECTION_FILE } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
-const RSVP_SECTION_BG = '/assets/images/prenup/prenup3.jpg'
+const RSVP_SECTION_BG = prenupUrl(PRENUP_RSVP_SECTION_FILE)
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
@@ -92,7 +93,7 @@ const RSVPSection = ({ onOpenRSVP }) => {
             : {
                 backgroundImage: `url(${RSVP_SECTION_BG})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'center 30%',
                 backgroundRepeat: 'no-repeat',
                 opacity: 0.8,
               }

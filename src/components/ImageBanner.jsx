@@ -7,7 +7,8 @@ const ImageBanner = ({
   src,
   alt = 'Banner image',
   subtitle = 'The',
-  title = 'Details'
+  title = 'Details',
+  objectPosition = 'center center',
 }) => {
   const usePlaceholder = shouldUsePrenupPlaceholder(src)
 
@@ -21,6 +22,7 @@ const ImageBanner = ({
               src={src} 
               alt={alt} 
               className="w-full h-full object-cover"
+              style={{ objectPosition }}
             />
           )}
           {/* Soft transparent white gradient layers at bottom */}

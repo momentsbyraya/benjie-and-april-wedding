@@ -13,6 +13,8 @@ import Entourage from './components/pages/Entourage'
 import Moments from './components/pages/Moments'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
 import { SHOW_PRENUP_IMAGES } from './config/prenupPlaceholder'
+import { prenupUrl, PRENUP_HERO_FILE, PRENUP_SAVE_THE_DATE_FILE, PRENUP_OG_FILE } from './config/prenupPhotos'
+import Watermark from './components/Watermark'
 
 function AppContent() {
   const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false)
@@ -30,155 +32,145 @@ function AppContent() {
 
   // Preload critical images and resources
   useEffect(() => {
-      const preloadImages = async () => {
-      const prenupCritical = SHOW_PRENUP_IMAGES
-        ? [
-            '/assets/images/prenup/DSC01018.jpg',
-            '/assets/images/prenup/Proposal 5.jpg',
-            '/assets/images/prenup/Proposal 1.jpg',
-            '/assets/images/prenup/Proposal 2.jpg',
-            '/assets/images/prenup/Proposal 4.jpg',
-            '/assets/images/prenup/prenup11.jpg',
-          ]
-        : []
+    const preloadImages = async () => {
+      try {
+        const prenupCritical = SHOW_PRENUP_IMAGES
+          ? [
+              prenupUrl(PRENUP_HERO_FILE),
+              prenupUrl(PRENUP_OG_FILE),
+              prenupUrl(PRENUP_SAVE_THE_DATE_FILE),
+            ]
+          : []
 
-      const criticalImages = [
-        ...prenupCritical,
-        '/assets/images/graphics/dusty-blue.png',
-        '/assets/images/graphics/flower-1.png',
-        '/assets/images/graphics/flower-3.png',
-        '/assets/images/graphics/flower-4.png',
-        '/assets/images/graphics/textured-bg-2.png',
-        '/assets/images/graphics/bg-1.png'
-      ]
+        const criticalImages = [
+          ...prenupCritical,
+          '/assets/images/graphics/dusty-blue.png',
+          '/assets/images/graphics/flower-1.png',
+          '/assets/images/graphics/flower-3.png',
+          '/assets/images/graphics/flower-4.png',
+          '/assets/images/graphics/textured-bg-2.png',
+          '/assets/images/graphics/bg-1.png',
+        ]
 
-      // Preload fonts
-      const preloadFonts = async () => {
-        if (document.fonts && document.fonts.ready) {
-          try {
-            await document.fonts.ready
-          } catch (e) {
-            console.warn('Font loading error:', e)
+        const preloadFonts = async () => {
+          if (document.fonts && document.fonts.ready) {
+            try {
+              await document.fonts.ready
+            } catch (e) {
+              console.warn('Font loading error:', e)
+            }
           }
         }
-      }
 
-      // Preload images with proper error handling and decoding
-      const imagePromises = criticalImages.map((src) => {
-        return new Promise((resolve) => {
-          if (src.endsWith('.mp4')) {
-            // For video, preload it properly
-            const video = document.createElement('video')
-            video.preload = 'auto'
-            video.oncanplaythrough = () => resolve()
-            video.onerror = () => resolve() // Resolve even on error to not block
-            video.src = src
-          } else {
-            const img = new Image()
-            img.onload = () => {
-              // Try to decode the image to ensure it's ready for rendering
-              if (img.decode) {
-                img.decode()
-                  .then(() => resolve())
-                  .catch(() => resolve()) // Resolve even if decode fails
-              } else {
+        const imagePromises = criticalImages.map((src) => {
+          return new Promise((resolve) => {
+            if (src.endsWith('.mp4')) {
+              const video = document.createElement('video')
+              video.preload = 'auto'
+              video.oncanplaythrough = () => resolve()
+              video.onerror = () => resolve()
+              video.src = src
+            } else {
+              const img = new Image()
+              img.onload = () => {
+                if (img.decode) {
+                  img.decode().then(() => resolve()).catch(() => resolve())
+                } else {
+                  resolve()
+                }
+              }
+              img.onerror = () => {
+                console.warn(`Failed to load image: ${src}`)
                 resolve()
               }
+              img.src = src
+              setTimeout(() => resolve(), 15000)
             }
-            img.onerror = () => {
-              console.warn(`Failed to load image: ${src}`)
-              resolve() // Resolve even on error to not block loading
-            }
-            img.src = src
-            // Set a timeout for each image (15 seconds max per image)
-            setTimeout(() => resolve(), 15000)
-          }
+          })
         })
-      })
 
-      // Start font preloading
-      const fontPromise = preloadFonts()
+        const fontPromise = preloadFonts()
 
-      // Wait for all critical resources to load
-      // Use Promise.allSettled to ensure we don't block on individual failures
-      const results = await Promise.allSettled([
-        Promise.all(imagePromises),
-        fontPromise
-      ])
+        const results = await Promise.allSettled([
+          Promise.all(imagePromises),
+          fontPromise,
+        ])
 
-      // Check if critical images loaded successfully
-      const imageResults = results[0]
-      if (imageResults.status === 'fulfilled') {
-        console.log('All critical images loaded')
-      } else {
-        console.warn('Some images failed to load:', imageResults.reason)
-      }
+        const imageResults = results[0]
+        if (imageResults.status === 'fulfilled') {
+          console.log('All critical images loaded')
+        } else {
+          console.warn('Some images failed to load:', imageResults.reason)
+        }
 
-      // Additional delay to ensure browser has processed all resources
-      // This helps prevent lag when NavIndex first renders
-      await new Promise(resolve => setTimeout(resolve, 300))
+        await new Promise((resolve) => setTimeout(resolve, 300))
 
-      // Wait for hero image to be visible in the viewport
-      const waitForHeroVisible = () => {
-        return new Promise((resolve) => {
-          const checkHero = () => {
-            // Check if we're on the home page
-            if (window.location.pathname === '/' || window.location.pathname === '') {
-              // Look for hero image
-              const heroSlot = document.querySelector('[data-hero-image-slot]')
-              if (heroSlot && heroSlot.tagName === 'IMG') {
-                const heroImg = heroSlot
-                // Check if image is loaded and visible
-                if (heroImg.complete && heroImg.naturalHeight > 0) {
-                  // Use Intersection Observer to check if hero is visible
-                  const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                      if (entry.isIntersecting) {
+        const waitForHeroVisible = () => {
+          return new Promise((resolve) => {
+            const checkHero = () => {
+              try {
+                if (
+                  window.location.pathname === '/' ||
+                  window.location.pathname === ''
+                ) {
+                  const heroSlot = document.querySelector('[data-hero-image-slot]')
+                  if (heroSlot && heroSlot.tagName === 'IMG') {
+                    const heroImg = heroSlot
+                    if (heroImg.complete && heroImg.naturalHeight > 0) {
+                      if (typeof IntersectionObserver === 'undefined') {
+                        resolve()
+                        return
+                      }
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              observer.disconnect()
+                              resolve()
+                            }
+                          })
+                        },
+                        { threshold: 0.1 }
+                      )
+                      observer.observe(heroImg)
+                      setTimeout(() => {
                         observer.disconnect()
                         resolve()
+                      }, 2000)
+                    } else {
+                      heroImg.onload = () => {
+                        setTimeout(() => resolve(), 100)
                       }
-                    })
-                  }, { threshold: 0.1 })
-                  
-                  observer.observe(heroImg)
-                  
-                  // Fallback timeout
-                  setTimeout(() => {
-                    observer.disconnect()
+                      heroImg.onerror = () => resolve()
+                      setTimeout(() => resolve(), 2000)
+                    }
+                  } else {
                     resolve()
-                  }, 2000)
-                } else {
-                  // Image not loaded yet, wait for load event
-                  heroImg.onload = () => {
-                    setTimeout(() => resolve(), 100)
                   }
-                  heroImg.onerror = () => resolve() // Resolve even on error
-                  setTimeout(() => resolve(), 2000) // Fallback timeout
+                } else {
+                  resolve()
                 }
-              } else {
-                // Hero placeholder (no photo) or image not in DOM yet
+              } catch (e) {
+                console.warn('waitForHeroVisible:', e)
                 resolve()
               }
-            } else {
-              // Not on home page, resolve immediately
-              resolve()
             }
-          }
-          
-          // Wait a bit for DOM to be ready
-          if (document.readyState === 'complete') {
-            checkHero()
-          } else {
-            window.addEventListener('load', checkHero)
-            setTimeout(() => resolve(), 3000) // Fallback timeout
-          }
-        })
+
+            if (document.readyState === 'complete') {
+              checkHero()
+            } else {
+              window.addEventListener('load', checkHero)
+              setTimeout(() => resolve(), 3000)
+            }
+          })
+        }
+
+        await waitForHeroVisible()
+      } catch (e) {
+        console.error('Preload failed:', e)
+      } finally {
+        setIsLoading(false)
       }
-
-      await waitForHeroVisible()
-
-      // Hide loader
-      setIsLoading(false)
     }
 
     preloadImages()
@@ -216,6 +208,7 @@ function AppContent() {
           <Footer />
         </>
       )}
+      {!isLoading && <Watermark />}
       <RSVPModal isOpen={isRSVPModalOpen} onClose={() => setIsRSVPModalOpen(false)} />
     </div>
   )

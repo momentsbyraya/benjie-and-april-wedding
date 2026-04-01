@@ -2,9 +2,10 @@ import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { couple, venues } from '../data'
 import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../config/prenupPlaceholder'
+import { prenupUrl, PRENUP_HERO_FILE } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
-const HERO_IMAGE_SRC = '/assets/images/prenup/DSC01018.jpg'
+const HERO_IMAGE_SRC = prenupUrl(PRENUP_HERO_FILE)
 
 const Hero = () => {
   // Refs for animated elements
@@ -27,14 +28,16 @@ const Hero = () => {
   const venueName = venues.ceremony.name
 
   useEffect(() => {
-    // Set initial hidden states
-    gsap.set(groomFirstNameRef.current, { opacity: 0, y: 30 })
-    gsap.set(groomLastNameRef.current, { opacity: 0, y: 30 })
-    gsap.set(andRef.current, { opacity: 0, y: 20 })
-    gsap.set(brideFirstNameRef.current, { opacity: 0, y: 30 })
-    gsap.set(brideLastNameRef.current, { opacity: 0, y: 30 })
-    gsap.set(dateRef.current, { opacity: 0, y: 20 })
-    gsap.set(venueRef.current, { opacity: 0, y: 20 })
+    const setHidden = (el, props) => {
+      if (el) gsap.set(el, props)
+    }
+    setHidden(groomFirstNameRef.current, { opacity: 0, y: 30 })
+    setHidden(groomLastNameRef.current, { opacity: 0, y: 30 })
+    setHidden(andRef.current, { opacity: 0, y: 20 })
+    setHidden(brideFirstNameRef.current, { opacity: 0, y: 30 })
+    setHidden(brideLastNameRef.current, { opacity: 0, y: 30 })
+    setHidden(dateRef.current, { opacity: 0, y: 20 })
+    setHidden(venueRef.current, { opacity: 0, y: 20 })
 
     // Create timeline for sequential animations (top → bottom: date/venue, then names)
     const tl = gsap.timeline({ delay: 0.3 })
@@ -116,7 +119,7 @@ const Hero = () => {
           data-hero-image-slot
           src={HERO_IMAGE_SRC}
           alt="Benjie and April"
-          className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-[50%_18%] sm:object-[50%_22%] md:object-[50%_25%] lg:object-[50%_27%] xl:object-[50%_28%]"
+          className="absolute left-1/2 top-1/2 h-[102%] w-[102%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-[50%_22%] sm:object-[50%_24%] md:object-[50%_26%] lg:object-[50%_28%] xl:object-[50%_30%]"
           fetchPriority="high"
           decoding="async"
         />

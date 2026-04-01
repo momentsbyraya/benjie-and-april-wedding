@@ -6,6 +6,7 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { loveStory } from '../data'
 import { themeConfig } from '../config/themeConfig'
 import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../config/prenupPlaceholder'
+import { LOVE_STORY_POLAROID_SPECS } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 import './pages/Details.css'
 
@@ -26,12 +27,7 @@ const LoveStory = () => {
 
   // Polaroid images — alternating 1 / 2 / 1 per paragraph (3 paragraphs → 4 images).
   // Intentionally different from Gallery grid + Home FullBleedPhoto / FullBleedPhotoSplit.
-  const polaroidImages = [
-    '/assets/images/prenup/JGM03967.jpg',
-    '/assets/images/prenup/JGM04089.jpg',
-    '/assets/images/prenup/DSC01025.jpg',
-    '/assets/images/prenup/JGM04140.jpg',
-  ]
+  const polaroidImages = LOVE_STORY_POLAROID_SPECS
 
   useEffect(() => {
     // Title animation
@@ -162,7 +158,7 @@ const LoveStory = () => {
   }, [isModalOpen])
 
   // Polaroid component
-  const Polaroid = ({ image, rotation = 0, index, size = 'normal' }) => {
+  const Polaroid = ({ src, objectPosition = 'center center', rotation = 0, index, size = 'normal' }) => {
     const maxWidth =
       size === 'solo' ? '140px' : size === 'small' ? '150px' : '200px'
     return (
@@ -179,7 +175,7 @@ const LoveStory = () => {
       onClick={() => handleImageClick(index)}
     >
       <div className="relative">
-        {shouldUsePrenupPlaceholder(image) ? (
+        {shouldUsePrenupPlaceholder(src) ? (
           <PrenupPlaceholder
             className="w-full aspect-square"
             style={{
@@ -190,13 +186,14 @@ const LoveStory = () => {
           />
         ) : (
           <img 
-            src={image}
+            src={src}
             alt={`Love story moment ${index + 1}`}
             className="w-full aspect-square object-cover"
             style={{
               border: '2px solid #A3B18A',
               borderBottom: 'none',
-              display: 'block'
+              display: 'block',
+              objectPosition,
             }}
           />
         )}
@@ -303,15 +300,20 @@ const LoveStory = () => {
                             : 'flex-row'
                         }`}
                       >
-                        {imageIndices.map((imgIdx, i) => polaroidImages[imgIdx] && (
+                        {imageIndices.map((imgIdx, i) => {
+                          const shot = polaroidImages[imgIdx]
+                          if (!shot) return null
+                          return (
                           <Polaroid
                             key={imgIdx}
-                            image={polaroidImages[imgIdx]}
+                            src={shot.src}
+                            objectPosition={shot.objectPosition}
                             rotation={imageCount === 1 ? -4 : i === 0 ? -5 : 5}
                             index={imgIdx}
                             size={imageCount === 1 ? 'solo' : 'normal'}
                           />
-                        ))}
+                          )
+                        })}
                       </div>
                     )}
                     <div className={`text-center sm:text-left ${imageCount > 0 ? 'flex-1' : 'w-full'}`}>
@@ -383,7 +385,7 @@ const LoveStory = () => {
             className="relative z-10 max-w-[90vw] max-h-[90vh] flex items-center justify-center"
             style={{ pointerEvents: 'none' }}
           >
-            {shouldUsePrenupPlaceholder(polaroidImages[currentImageIndex]) ? (
+            {shouldUsePrenupPlaceholder(polaroidImages[currentImageIndex].src) ? (
               <div className="max-w-full max-h-[90vh] flex items-center justify-center px-8">
                 <p className="text-white font-albert text-lg sm:text-2xl tracking-[0.2em] uppercase text-center">
                   {PRENUP_PLACEHOLDER_TEXT}
@@ -391,7 +393,7 @@ const LoveStory = () => {
               </div>
             ) : (
               <img 
-                src={polaroidImages[currentImageIndex]}
+                src={polaroidImages[currentImageIndex].src}
                 alt={`Love story image ${currentImageIndex + 1}`}
                 className="max-w-full max-h-[90vh] object-contain"
               />

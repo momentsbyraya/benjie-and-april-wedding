@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageLightbox from './ImageLightbox'
 import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import { PHOTO_SECTION_DEFAULTS } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
 // Register ScrollTrigger plugin
@@ -22,11 +23,7 @@ const PhotoSection = ({
   const texts = backgroundTexts.length > 0 ? backgroundTexts : defaultTexts
   
   // Default images if none provided
-  const defaultImages = [
-    { src: '/assets/images/prenup/APA_0891.JPG', alt: 'Photo 1', label: 'Memories' },
-    { src: '/assets/images/prenup/APA_0891.JPG', alt: 'Photo 2', label: 'Together' },
-    { src: '/assets/images/prenup/APA_0891.JPG', alt: 'Photo 3', label: 'Love' }
-  ]
+  const defaultImages = PHOTO_SECTION_DEFAULTS
   const displayImages = images.length > 0 ? images : defaultImages
 
   const openLightbox = (img) => {
@@ -246,9 +243,10 @@ const PhotoSection = ({
                 />
               ) : (
                 <div 
-                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover"
                   style={{
                     backgroundImage: `url(${displayImages[0].src})`,
+                    backgroundPosition: displayImages[0].backgroundPosition ?? 'center center',
                     borderTop: '4px solid white',
                     borderLeft: '4px solid white',
                     borderRight: '4px solid white'
@@ -293,9 +291,10 @@ const PhotoSection = ({
                 />
               ) : (
                 <div 
-                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover"
                   style={{
                     backgroundImage: `url(${displayImages[1].src})`,
+                    backgroundPosition: displayImages[1].backgroundPosition ?? 'center center',
                     borderTop: '4px solid white',
                     borderLeft: '4px solid white',
                     borderRight: '4px solid white'
@@ -340,9 +339,10 @@ const PhotoSection = ({
                 />
               ) : (
                 <div 
-                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover bg-center"
+                  className="w-full h-40 sm:h-60 lg:h-72 bg-cover"
                   style={{
                     backgroundImage: `url(${displayImages[2].src})`,
+                    backgroundPosition: displayImages[2].backgroundPosition ?? 'center center',
                     borderTop: '4px solid white',
                     borderLeft: '4px solid white',
                     borderRight: '4px solid white'

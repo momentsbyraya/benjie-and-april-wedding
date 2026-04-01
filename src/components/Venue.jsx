@@ -36,7 +36,11 @@ const Venue = () => {
   }, [useImagePlaceholder, ceremonyPhoto, receptionPhoto])
 
   const venueName = ceremony.name
-  const mapsUrl = ceremony.googleMapsUrl || reception.googleMapsUrl
+  const mapsUrl =
+    ceremony.directionsUrl ||
+    reception.directionsUrl ||
+    ceremony.googleMapsUrl ||
+    reception.googleMapsUrl
 
   const nextImage = () => {
     if (imageSlides.length <= 1) return

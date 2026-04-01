@@ -11,6 +11,7 @@ import FAQ from './FAQ'
 import SaveTheDateCounter from './SaveTheDateCounter'
 import FullBleedPhoto from './FullBleedPhoto'
 import FullBleedPhotoSplit from './FullBleedPhotoSplit'
+import { prenupUrl, PRENUP_SPECS } from '../config/prenupPhotos'
 import './pages/Details.css'
 
 const Home = ({ onOpenRSVP }) => {
@@ -47,7 +48,7 @@ const Home = ({ onOpenRSVP }) => {
       </div>
 
       <FullBleedPhoto
-        src="/assets/images/prenup/JGM04266.jpg"
+        src={prenupUrl(PRENUP_SPECS[0].file)}
         alt="Benjie and April"
       />
 
@@ -60,10 +61,12 @@ const Home = ({ onOpenRSVP }) => {
       </div>
 
       <FullBleedPhotoSplit
-        leftSrc="/assets/images/prenup/JGM04170.jpg"
-        rightSrc="/assets/images/prenup/JGM03897.jpg"
+        leftSrc={prenupUrl(PRENUP_SPECS[8].file)}
+        rightSrc={prenupUrl(PRENUP_SPECS[1].file)}
         leftAlt="Benjie and April"
         rightAlt="Benjie and April"
+        leftObjectPosition={PRENUP_SPECS[8].objectPosition}
+        rightObjectPosition={PRENUP_SPECS[1].objectPosition}
       />
 
       {/* Entourage Section - between Order of Events and Dress Code */}
@@ -71,10 +74,12 @@ const Home = ({ onOpenRSVP }) => {
 
       <FullBleedPhotoSplit
         invertLayout
-        leftSrc="/assets/images/prenup/prenup5.jpg"
-        rightSrc="/assets/images/prenup/JGM04213.jpg"
+        leftSrc={prenupUrl(PRENUP_SPECS[3].file)}
+        rightSrc={prenupUrl(PRENUP_SPECS[4].file)}
         leftAlt="Benjie and April"
         rightAlt="Benjie and April"
+        leftObjectPosition={PRENUP_SPECS[3].objectPosition}
+        rightObjectPosition={PRENUP_SPECS[4].objectPosition}
       />
 
       <div className="relative z-20 flex items-center justify-center pt-12">
@@ -84,7 +89,7 @@ const Home = ({ onOpenRSVP }) => {
       </div>
 
       <FullBleedPhoto
-        src="/assets/images/prenup/DSC01046.jpg"
+        src={prenupUrl(PRENUP_SPECS[10].file)}
         alt="Benjie and April"
       />
 
@@ -95,10 +100,12 @@ const Home = ({ onOpenRSVP }) => {
       </div>
 
       <FullBleedPhotoSplit
-        leftSrc="/assets/images/prenup/prenup2.jpg"
-        rightSrc="/assets/images/prenup/JGM04077.jpg"
+        leftSrc={prenupUrl(PRENUP_SPECS[11].file)}
+        rightSrc={prenupUrl(PRENUP_SPECS[2].file)}
         leftAlt="Benjie and April"
         rightAlt="Benjie and April"
+        leftObjectPosition={PRENUP_SPECS[11].objectPosition}
+        rightObjectPosition={PRENUP_SPECS[2].objectPosition}
       />
 
       <div className="relative z-20 flex items-center justify-center">

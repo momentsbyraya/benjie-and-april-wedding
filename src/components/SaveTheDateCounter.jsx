@@ -6,9 +6,10 @@ import { themeConfig } from '../config/themeConfig'
 import { couple } from '../data'
 import './pages/Details.css'
 import { shouldUsePrenupPlaceholder } from '../config/prenupPlaceholder'
+import { prenupUrl, PRENUP_SAVE_THE_DATE_FILE } from '../config/prenupPhotos'
 import PrenupPlaceholder from './PrenupPlaceholder'
 
-const SAVE_THE_DATE_BG = '/assets/images/prenup/prenup11.jpg'
+const SAVE_THE_DATE_BG = prenupUrl(PRENUP_SAVE_THE_DATE_FILE)
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -78,7 +79,7 @@ const SaveTheDateCounter = () => {
           : {
               backgroundImage: `url(${SAVE_THE_DATE_BG})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 35%',
+              backgroundPosition: 'center 28%',
               backgroundRepeat: 'no-repeat'
             }
       }

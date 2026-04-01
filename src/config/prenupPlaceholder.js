@@ -2,7 +2,7 @@
  * Prenup photos live under /assets/images/prenup/.
  * Set SHOW_PRENUP_IMAGES to true when final photos are ready to ship.
  */
-export const SHOW_PRENUP_IMAGES = false
+export const SHOW_PRENUP_IMAGES = true
 
 export const PRENUP_PLACEHOLDER_TEXT = 'TO BE ADDED'
 

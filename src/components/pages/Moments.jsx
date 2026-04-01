@@ -7,6 +7,11 @@ import { ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import ImageBanner from '../ImageBanner'
 import { loveStory } from '../../data'
 import { shouldUsePrenupPlaceholder, PRENUP_PLACEHOLDER_TEXT } from '../../config/prenupPlaceholder'
+import {
+  GALLERY_ITEMS,
+  MOMENTS_GRID_SPANS,
+  MOMENTS_BANNER,
+} from '../../config/prenupPhotos'
 import PrenupPlaceholder from '../PrenupPlaceholder'
 
 // Register ScrollTrigger plugin
@@ -24,43 +29,8 @@ const Moments = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState(null)
 
-  // First gallery image - single image
-  const firstGalleryImage = [
-    '/assets/images/prenup/DSC_3239.jpg'
-  ]
-
-  // Second gallery - images NOT used in NavIndex and Details
-  // Used elsewhere: DSC_3239.jpg (NavIndex, Moments), DSC_5234.jpg (NavIndex), DSC_5459.jpg (NavIndex), DSC_3496.jpg (Details)
-  // Pattern: 1 full, 2 (1/3 + 2/3), 2 (2/3 + 1/3), 1 full, repeat
-  const secondGalleryImages = [
-    // First column: 1 full image
-    '/assets/images/prenup/DSC_3122.jpg',
-    // Second column: 1/3 and 2/3
-    '/assets/images/prenup/DSC_3139.jpg', // 1/3
-    '/assets/images/prenup/DSC_3182.jpg', // 2/3
-    // Third column: 2/3 and 1/3
-    '/assets/images/prenup/DSC_3207.jpg', // 2/3
-    '/assets/images/prenup/DSC_3344.jpg', // 1/3
-    // Fourth column: 1 full image
-    '/assets/images/prenup/DSC_3961.jpg',
-    // Continue with remaining images
-    '/assets/images/prenup/DSC_3690.jpg',
-    '/assets/images/prenup/DSC_3809.jpg', // 1/3
-    '/assets/images/prenup/DSC_3543.jpg', // 2/3
-    '/assets/images/prenup/DSC_4073.jpg', // 2/3
-    '/assets/images/prenup/DSC_4076.jpg', // 1/3
-    '/assets/images/prenup/DSC_4154.jpg',
-    '/assets/images/prenup/DSC_4171.jpg', // 1/3
-    '/assets/images/prenup/DSC_4782.jpg', // 2/3
-    '/assets/images/prenup/DSC_4639.jpg', // 2/3
-    '/assets/images/prenup/DSC_4307.jpg', // 1/3
-    '/assets/images/prenup/DSC_4662.jpg',
-    '/assets/images/prenup/DSC_4681.jpg', // 1/3
-    '/assets/images/prenup/DSC_4715.jpg', // 2/3
-    '/assets/images/prenup/DSC_4258.jpg' // 2/3
-  ]
-
-  // Images array for the lightbox (includes all gallery images)
+  const firstGalleryImage = [GALLERY_ITEMS[0]]
+  const secondGalleryImages = GALLERY_ITEMS.slice(1)
   const lightboxImages = [...firstGalleryImage, ...secondGalleryImages]
 
   useEffect(() => {
@@ -181,10 +151,11 @@ const Moments = () => {
       >
         {/* Image Banner at Top */}
         <ImageBanner
-          src="/assets/images/prenup/prenup1.png"
+          src={MOMENTS_BANNER.src}
           alt="Moments banner"
           title="Love Story"
           subtitle="Our"
+          objectPosition={MOMENTS_BANNER.objectPosition}
         />
 
         {/* Background Image with reduced opacity */}
@@ -245,23 +216,26 @@ const Moments = () => {
 
               {/* First Gallery Image - Single Image - Full Width */}
               <div ref={contentRef} className="w-full">
-                {firstGalleryImage.map((image, index) => (
+                {firstGalleryImage.map((item, index) => (
                   <div
                     key={index}
                     className="soft-edges relative cursor-pointer overflow-hidden w-full"
                     onClick={() => {
-                      setSelectedImage(image)
+                      setSelectedImage(item)
                       setSelectedImageIndex(index)
                     }}
                   >
-                    {shouldUsePrenupPlaceholder(image) ? (
+                    {shouldUsePrenupPlaceholder(item.src) ? (
                       <PrenupPlaceholder className="min-h-[200px] w-full sm:min-h-[280px]" />
                     ) : (
                       <img
-                        src={image}
+                        src={item.src}
                         alt={`Gallery image ${index + 1}`}
                         className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: item.objectPosition }}
+                        sizes="(max-width: 1024px) 100vw, 896px"
                         loading="lazy"
+                        decoding="async"
                       />
                     )}
                   </div>
@@ -290,51 +264,8 @@ const Moments = () => {
                 className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4"
                 style={{ gridAutoRows: '1fr' }}
               >
-                {secondGalleryImages.map((image, index) => {
-                  // Pattern: 1 full, 2 (1/3 + 2/3), 2 (2/3 + 1/3), 1 full, then 1/3 + 2/3
-                  let gridColumn = 'span 1' // default 1/3 width
-
-                  if (index === 0) {
-                    gridColumn = 'span 3'
-                  } else if (index === 1) {
-                    gridColumn = 'span 1'
-                  } else if (index === 2) {
-                    gridColumn = 'span 2'
-                  } else if (index === 3) {
-                    gridColumn = 'span 2'
-                  } else if (index === 4) {
-                    gridColumn = 'span 1'
-                  } else if (index === 5) {
-                    gridColumn = 'span 3'
-                  } else if (index === 6) {
-                    gridColumn = 'span 1'
-                  } else if (index === 7) {
-                    gridColumn = 'span 2'
-                  } else if (index === 8) {
-                    gridColumn = 'span 2'
-                  } else if (index === 9) {
-                    gridColumn = 'span 1'
-                  } else if (index === 10) {
-                    gridColumn = 'span 3'
-                  } else if (index === 11) {
-                    gridColumn = 'span 1'
-                  } else if (index === 12) {
-                    gridColumn = 'span 2'
-                  } else if (index === 13) {
-                    gridColumn = 'span 2'
-                  } else if (index === 14) {
-                    gridColumn = 'span 1'
-                  } else if (index === 15) {
-                    gridColumn = 'span 3'
-                  } else if (index === 16) {
-                    gridColumn = 'span 1'
-                  } else if (index === 17) {
-                    gridColumn = 'span 2'
-                  } else if (index === 18) {
-                    gridColumn = 'span 2'
-                  } else if (index === 19) {
-                    gridColumn = 'span 2'
-                  }
+                {secondGalleryImages.map((item, index) => {
+                  const gridColumn = MOMENTS_GRID_SPANS[index] ?? 'span 1'
 
                   return (
                     <div
@@ -351,23 +282,26 @@ const Moments = () => {
                         transform: 'translateZ(0)'
                       }}
                       onClick={() => {
-                        setSelectedImage(image)
+                        setSelectedImage(item)
                         setSelectedImageIndex(firstGalleryImage.length + index)
                       }}
                     >
-                      {shouldUsePrenupPlaceholder(image) ? (
+                      {shouldUsePrenupPlaceholder(item.src) ? (
                         <PrenupPlaceholder className="h-full w-full min-h-[120px]" />
                       ) : (
                         <img
-                          src={image}
+                          src={item.src}
                           alt={`Gallery ${index + 1}`}
-                          className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${image.includes('DSC_4307') ? 'lg:object-[center_30%]' : ''}`}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           style={{
                             height: '100%',
                             willChange: 'transform',
-                            backfaceVisibility: 'hidden'
+                            backfaceVisibility: 'hidden',
+                            objectPosition: item.objectPosition,
                           }}
+                          sizes="(max-width: 1024px) 34vw, 240px"
                           loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </div>
@@ -474,7 +408,7 @@ const Moments = () => {
 
             {/* Image */}
             <div className="relative z-10 max-w-7xl w-full max-h-[90vh] flex items-center justify-center">
-              {shouldUsePrenupPlaceholder(selectedImage) ? (
+              {shouldUsePrenupPlaceholder(selectedImage.src) ? (
                 <p
                   className="text-white font-albert text-lg sm:text-2xl tracking-[0.2em] uppercase text-center px-8"
                   onClick={(e) => e.stopPropagation()}
@@ -483,7 +417,7 @@ const Moments = () => {
                 </p>
               ) : (
                 <img
-                  src={selectedImage}
+                  src={selectedImage.src}
                   alt="Full size image"
                   className="max-w-full max-h-[90vh] w-auto h-auto object-contain"
                   onClick={(e) => e.stopPropagation()}
