@@ -15,14 +15,14 @@
       "position": "right"
     },
     {
-      "time": "6:00 PM",
+      "time": "4:00 PM",
       "description": "Reception Dinner",
       "image": "/assets/images/graphics/dinner-2.png",
       "imageAlt": "Reception Dinner",
       "position": "left"
     },
     {
-      "time": "9:00 PM",
+      "time": "6:00 PM",
       "description": "Ends",
       "image": "/assets/images/graphics/cake-2.png",
       "imageAlt": "Ends",

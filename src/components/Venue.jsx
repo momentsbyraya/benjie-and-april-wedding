@@ -21,6 +21,10 @@ const Venue = () => {
   const ceremony = venuesData.ceremony
   const reception = venuesData.reception
   const useImagePlaceholder = venuesData.useImagePlaceholder === true
+  const venueImageObjectPosition =
+    typeof venuesData.venueImageObjectPosition === 'string'
+      ? venuesData.venueImageObjectPosition
+      : 'center center'
 
   const ceremonyPhoto = ceremony.ceremonyPhoto || '/assets/images/venues/ceremony.jpg'
   const receptionPhoto = reception.receptionPhoto
@@ -33,7 +37,12 @@ const Venue = () => {
     }
     const fallback = [ceremonyPhoto, receptionPhoto].filter(Boolean)
     return [...new Set(fallback)]
-  }, [useImagePlaceholder, ceremonyPhoto, receptionPhoto])
+  }, [
+    useImagePlaceholder,
+    ceremonyPhoto,
+    receptionPhoto,
+    venuesData.carouselPhotos,
+  ])
 
   const venueName = ceremony.name
   const mapsUrl =
@@ -168,6 +177,7 @@ const Venue = () => {
                               src={src}
                               alt={`${venueName} — photo ${index + 1}`}
                               className="w-full h-full object-cover rounded-full"
+                              style={{ objectPosition: venueImageObjectPosition }}
                             />
                           </div>
                         ))}

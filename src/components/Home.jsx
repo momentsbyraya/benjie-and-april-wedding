@@ -6,6 +6,7 @@ import EntourageSection from './EntourageSection'
 import RSVPSection from './RSVPSection'
 import LoveStory from './LoveStory'
 import Gallery from './Gallery'
+import GiftRegistry from './GiftRegistry'
 import DressCode from './DressCode'
 import FAQ from './FAQ'
 import SaveTheDateCounter from './SaveTheDateCounter'
@@ -114,6 +115,8 @@ const Home = ({ onOpenRSVP }) => {
 
           {/* Gallery — masonry-style grid + lightbox */}
           <Gallery />
+
+          <GiftRegistry />
         </div>
       </div>
 

@@ -14,8 +14,6 @@ import Moments from './components/pages/Moments'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
 import { SHOW_PRENUP_IMAGES } from './config/prenupPlaceholder'
 import { prenupUrl, PRENUP_HERO_FILE, PRENUP_SAVE_THE_DATE_FILE, PRENUP_OG_FILE } from './config/prenupPhotos'
-import Watermark from './components/Watermark'
-
 function AppContent() {
   const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false)
   const [showInvitation, setShowInvitation] = useState(false)
@@ -208,7 +206,6 @@ function AppContent() {
           <Footer />
         </>
       )}
-      {!isLoading && <Watermark />}
       <RSVPModal isOpen={isRSVPModalOpen} onClose={() => setIsRSVPModalOpen(false)} />
     </div>
   )
