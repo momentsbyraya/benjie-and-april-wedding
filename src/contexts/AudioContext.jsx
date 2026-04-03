@@ -21,21 +21,20 @@ export const AudioProvider = ({ children }) => {
       console.warn('Failed to create URL for audio, using direct path:', error)
       audioRef.current = new Audio(audio.background)
     }
-    audioRef.current.loop = false
-    audioRef.current.volume = audio.volume
-
     const loopStart = typeof audio.loopStart === 'number' ? audio.loopStart : 0
     const loopEnd = typeof audio.loopEnd === 'number' ? audio.loopEnd : null
+    const useSegmentLoop = loopEnd != null
+
+    // Full-track repeat: native loop. Segment repeat: loop=false + timeupdate seek.
+    audioRef.current.loop = !useSegmentLoop && audio.loop === true
+    audioRef.current.volume = audio.volume
 
     const handleTimeUpdate = () => {
-      if (!audioRef.current || loopEnd == null) return
+      if (!audioRef.current || !useSegmentLoop) return
 
-      // When reaching the loop end (e.g. 2:39), jump back to loopStart (e.g. 0:02)
       if (audioRef.current.currentTime >= loopEnd) {
         audioRef.current.currentTime = loopStart
-        // keep playing seamlessly if already playing
         if (!audioRef.current.paused) {
-          // no await; best-effort
           audioRef.current.play().catch(() => {})
         }
       }

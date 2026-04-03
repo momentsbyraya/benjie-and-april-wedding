@@ -124,7 +124,7 @@ export const MOMENTS_BANNER = {
 
 /** Hero + section backgrounds (indices into PRENUP_SPECS). */
 export const PRENUP_HERO_FILE = PRENUP_SPECS[11].file
-export const PRENUP_SAVE_THE_DATE_FILE = PRENUP_SPECS[5].file
+export const PRENUP_SAVE_THE_DATE_FILE = PRENUP_SPECS[4].file
 export const PRENUP_RSVP_SECTION_FILE = PRENUP_SPECS[9].file
 export const PRENUP_RSVP_MODAL_FILE = PRENUP_SPECS[12].file
 export const PRENUP_OG_FILE = PRENUP_SPECS[10].file

@@ -76,11 +76,11 @@ const Home = ({ onOpenRSVP }) => {
       <FullBleedPhotoSplit
         invertLayout
         leftSrc={prenupUrl(PRENUP_SPECS[3].file)}
-        rightSrc={prenupUrl(PRENUP_SPECS[4].file)}
+        rightSrc={prenupUrl(PRENUP_SPECS[5].file)}
         leftAlt="Benjie and April"
         rightAlt="Benjie and April"
         leftObjectPosition={PRENUP_SPECS[3].objectPosition}
-        rightObjectPosition={PRENUP_SPECS[4].objectPosition}
+        rightObjectPosition={PRENUP_SPECS[5].objectPosition}
       />
 
       <div className="relative z-20 flex items-center justify-center pt-12">
